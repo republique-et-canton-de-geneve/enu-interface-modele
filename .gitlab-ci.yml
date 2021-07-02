@@ -113,5 +113,5 @@ release_master:
     - mvn $MAVEN_CLI_OPTS release:prepare release:perform -Dresume=false -Darguments="-DskipTests -Dmaven.javadoc.skip=true" -DignoreSnapshots=true -Dusername=$GITLAB_USER -Dpassword=$GITLAB_PASSWORD
   artifacts:
     paths:
-      - target/*.war
+      - target/*.jar
   when: manual
