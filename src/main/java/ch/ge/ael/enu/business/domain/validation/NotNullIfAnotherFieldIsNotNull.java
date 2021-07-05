@@ -18,7 +18,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({TYPE, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Repeatable(NotNullIfAnotherFieldIsNotNull.List.class) // only with hibernate-validator >= 6.x
-@Constraint(validatedBy = NullIfAnotherFieldIsNullValidator.class)
+@Constraint(validatedBy = NotNullIfAnotherFieldIsNotNullValidator.class)
 @Documented
 public @interface NotNullIfAnotherFieldIsNotNull {
     String fieldName();
