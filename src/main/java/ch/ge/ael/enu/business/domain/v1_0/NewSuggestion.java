@@ -49,7 +49,7 @@ public class NewSuggestion {
     private String libelleAction = null;
 
     /** URL du bouton. */
-    @NotBlank
+    @NotNull
     private URL urlAction = null;
 
     @NotNull
@@ -62,7 +62,7 @@ public class NewSuggestion {
     private String descriptionAction = null;
 
     /** URL du livret de la prestation. */
-    @NotBlank
+    @NotNull
     private URL urlPrestation = null;
 
 }
