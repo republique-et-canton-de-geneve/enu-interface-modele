@@ -23,6 +23,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.net.URL;
 import java.time.LocalDate;
@@ -51,7 +52,7 @@ public class NewSuggestion {
     @NotBlank
     private URL urlAction = null;
 
-    @NotBlank
+    @NotNull
     @Future
     private LocalDate dateEcheanceAction = null;
 
