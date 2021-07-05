@@ -49,7 +49,6 @@ public class NewSuggestion {
 
     /** URL du bouton. */
     @NotBlank
-    @Size(min=1, max=256)
     private URL urlAction = null;
 
     @NotBlank
@@ -63,7 +62,6 @@ public class NewSuggestion {
 
     /** URL du livret de la prestation. */
     @NotBlank
-    @Size(min=1, max=256)
     private URL urlPrestation = null;
 
 }

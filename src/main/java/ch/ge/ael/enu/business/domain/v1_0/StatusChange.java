@@ -88,13 +88,11 @@ public class StatusChange {
     @Schema(allowableValues = {"ENRICHISSEMENT_DE_DEMANDE","REPONSE_DEMANDE_RENSEIGNEMENT"})
     private String typeAction;
 
-    @Size(max=256)
     private URL urlAction;
 
     @Future
     private LocalDate dateEcheanceAction;
 
-    @Size(max=256)
     private URL urlRenouvellementDemarche = null;
 
 }
