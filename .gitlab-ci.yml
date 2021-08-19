@@ -23,7 +23,13 @@ variables:
   # `showDateTime` will show the passed time in milliseconds. You need to specify `--batch-mode` to make this work.
   MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   #MAVEN_OPTS: "-Dmaven.repo.local=/cache/.m2/repository"
-  DOCKER_IMAGE: $DOCKER_URL/ch/ge/cti/build/alpine-maven-git-node:6
+
+  # config SonarQube
+  SONAR_MAVEN_GOAL: org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar
+  SONAR_USER_HOME: /cache/sonar
+
+#  DOCKER_IMAGE: $DOCKER_URL/ch/ge/cti/build/alpine-maven-git-node:6
+  DOCKER_IMAGE: $DOCKER_URL/ch/ge/cti/build/docker-npm-maven:1.1.1
 
 default:
   tags:
@@ -32,9 +38,6 @@ default:
     - 'net:soca-dev'
   image:
     name: $DOCKER_IMAGE
-
-# Image standard Maven + JDK 11
-# image: maven:3-jdk-11
 
 stages:
   - test
@@ -77,23 +80,23 @@ verify:jdk11:
 #  only:
 #    - master
 
-analyse_clm_master:
+analyse_clm_sonar_master:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS package -DskipTests
+    - mvn $MAVEN_CLI_OPTS verify
+      -Dsonar.host.url=$SonarQube_URL -Dsonar.gitlab.project_id=$CI_PROJECT_PATH -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA
   only:
     - master
 
 deploy_master:
   stage: deploy
   script:
-    - mvn $MAVEN_CLI_OPTS clean deploy -DskipTests
+    - mvn $MAVEN_CLI_OPTS clean deploy
   only:
     - master
 
 release_master:
   stage: release
-  image: $DOCKER_IMAGE
   before_script:
     - echo "=========Openshift runner specific script=========="
     - user_id=$(id -u)

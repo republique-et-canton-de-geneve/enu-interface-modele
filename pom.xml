@@ -20,9 +20,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:${env.GITLAB_PROJECT_BASE_URL}/enu-interface-modele.git</connection>
-        <developerConnection>scm:git:${env.GITLAB_PROJECT_BASE_URL}/enu-interface-modele.git</developerConnection>
-        <url>${env.GITLAB_PROJECT_BASE_URL}/enu-interface-modele.git</url>
+        <connection>scm:git:${env.GITLAB_URL}/enu-interface-modele.git</connection>
+        <developerConnection>scm:git:${env.GITLAB_URL}/enu-interface-modele.git</developerConnection>
+        <url>${env.GITLAB_URL}/enu-interface-modele.git</url>
         <tag>HEAD</tag>
     </scm>
 
