@@ -83,7 +83,7 @@ verify:jdk11:
 analyse_clm_sonar_master:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS verify
+    - mvn $MAVEN_CLI_OPTS clean verify $SONAR_MAVEN_GOAL
       -Dsonar.host.url=$SonarQube_URL -Dsonar.gitlab.project_id=$CI_PROJECT_PATH -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA
   only:
     - master
