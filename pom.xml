@@ -4,7 +4,7 @@
 
     <groupId>ch.ge.etat.ael.enu</groupId>
     <artifactId>enu-model</artifactId>
-    <version>0.6</version>
+    <version>0.7-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>Modèle objet pour l'API externe de l'ENU</description>
 
@@ -23,7 +23,7 @@
         <connection>scm:git:${env.GITLAB_URL}/enu-interface-modele.git</connection>
         <developerConnection>scm:git:${env.GITLAB_URL}/enu-interface-modele.git</developerConnection>
         <url>${env.GITLAB_URL}/enu-interface-modele.git</url>
-        <tag>enu-model-0.6</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
