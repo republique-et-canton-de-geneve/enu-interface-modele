@@ -5,9 +5,28 @@
     <!-- le groupId doit commencer par "ch.ge.etat" afin que le JAR puisse etre pousse sur Maven Central -->
     <groupId>ch.ge.etat.ael.enu</groupId>
     <artifactId>enu-model</artifactId>
-    <version>0.7-SNAPSHOT</version>
+    <version>0.17-SNAPSHOT</version>
     <packaging>jar</packaging>
+
+    <name>enu-model</name>
     <description>Modèle objet pour l'API externe de l'ENU</description>
+    <url>https://github.com/Espace-numerique-de-l-usager/enu-model</url>
+
+    <licenses>
+        <license>
+            <name>AGPL-3.0</name>
+            <url>https://www.gnu.org/licenses/agpl-3.0.html</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>EdG</name>
+            <email>opensource@etat.ge.ch</email>
+            <organization>Etat de Geneve, Switzerland</organization>
+            <organizationUrl>https://ge.ch</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <java.version>8</java.version>
@@ -111,5 +130,116 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <!-- Profil special, pour deployer les JAR sur Maven Central, via OSSRH -->
+            <id>maven-central</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <!-- Deployer egalement un JAR contenant les sources (exige par Sonatype) -->
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Deployer egalement un JAR contenant la javadoc (exige par Sonatype) -->
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Signer les livrables via GPG (exige par Sonatype)
+                         Ne fonctionne pas en local, uniquement depuis le serveur IC.
+                         La valeur de "gpg.keyname" est fournie dans le fichier .m2/settings.xml.
+                      -->
+                    <plugin>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <keyname>${gpg.keyname}</keyname>
+                                    <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Ne pas utiliser le plugin maven-deploy-plugin habituel... -->
+                    <plugin>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <version>2.8.2</version>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                    <!-- ... mais utiliser plutot le plugin de Sonatype, qui non seulement deploie sur
+                         OSSRH (comme le fait le maven-deploy-plugin), mais en plus fait un close
+                         du repository OSSRH et propage le deploiement sur Maven Central...
+                      -->
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <executions>
+                            <execution>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <!-- ... moyennant une configuration adequate du maven-release-plugin : sans le release profile
+                         par defaut. Voir https://central.sonatype.org/publish/publish-maven
+                      -->
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>2.5.3</version>
+                        <configuration>
+                            <autoVersionSubmodules>true</autoVersionSubmodules>
+                            <useReleaseProfile>false</useReleaseProfile>
+                            <releaseProfiles>maven-central</releaseProfiles>
+                            <goals>deploy</goals>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 
 </project>

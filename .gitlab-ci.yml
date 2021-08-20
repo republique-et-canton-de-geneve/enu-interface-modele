@@ -1,115 +1,53 @@
-# This file is a template, and might need editing before it works on your project.
-# Build JAVA applications using Apache Maven (http://maven.apache.org)
-# For docker image tags see https://hub.docker.com/_/maven/
-#
-# For general lifecycle information see https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
-
-# This template will build and test your projects
-# * Caches downloaded dependencies and plugins between invocation.
-# * Verify but don't deploy merge requests.
-# * Deploy built artifacts from master branch only.
-
 variables:
+  # fix for old git version
   GIT_STRATEGY: clone
   GIT_SSL_NO_VERIFY: "true"
-  GIT_SUBMODULE_STRATEGY: recursive
-
   # config Maven
-  # As of Maven 3.3.0 instead of this you may define these options in `.mvn/maven.config` so the same config is used
-  # when running from the command line.
-  # `installAtEnd` and `deployAtEnd` are only effective with recent version of the corresponding plugins.
-  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
-  # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
-  # `showDateTime` will show the passed time in milliseconds. You need to specify `--batch-mode` to make this work.
-  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
-  #MAVEN_OPTS: "-Dmaven.repo.local=/cache/.m2/repository"
-
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=/cache/.m2/repository"
   # config SonarQube
   SONAR_MAVEN_GOAL: org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar
   SONAR_USER_HOME: /cache/sonar
 
-#  DOCKER_IMAGE: $DOCKER_URL/ch/ge/cti/build/alpine-maven-git-node:6
-  DOCKER_IMAGE: $DOCKER_URL/ch/ge/cti/build/docker-npm-maven:1.1.1
-
 default:
+  image:
+    name: $DOCKER_URL/ch/ge/cti/build/docker-npm-maven:1.1.1
   tags:
     - 'for:application-project'
     - 'host:restricted-container'
     - 'net:soca-dev'
-  image:
-    name: $DOCKER_IMAGE
 
 stages:
-  - test
   - build
-  - deploy
   - release
 
-# Cache downloaded dependencies and plugins between builds.
-# To keep cache across branches add 'key: "$CI_JOB_NAME"'
-cache:
-  untracked: true
-  key: "$CI_PROJECT_ID"
-  paths:
-    - .m2/repository
-
-# For merge requests do not `deploy` but only run `verify`.
-# See https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
-.verify: &verify
-  stage: test
-  script:
-    - 'mvn $MAVEN_CLI_OPTS verify'
-  except:
-    - master
-
-# Verify merge requests using JDK11
-verify:jdk11:
-  <<: *verify
-
-# To deploy packages from CI, create a ci_settings.xml file
-# For deploying packages to GitLab's Maven Repository: See https://docs.***REMOVED***.com/ee/user/packages/maven_repository/index.html#create-maven-packages-with-***REMOVED***-cicd for more details.
-# Please note: The GitLab Maven Repository is currently only available in GitLab Premium / Ultimate.
-# For `master` branch run `mvn deploy` automatically.
-#deploy:jdk11:
-#  stage: deploy
-#  script:
-#    - if [ ! -f ci_settings.xml ];
-#        then echo "CI settings missing\! If deploying to GitLab Maven Repository, please see https://docs.***REMOVED***.com/ee/user/packages/maven_repository/index.html#create-maven-packages-with-***REMOVED***-cicd for instructions.";
-#      fi
-#    - 'mvn $MAVEN_CLI_OPTS deploy -s ci_settings.xml'
-#  only:
-#    - master
-
-analyse_clm_sonar_master:
+# le deploiement des snapshots se fait sur le depot Nexus de l'Etat, afin que le JAR soit rapidement disponible
+build_and_sonar:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS clean verify $SONAR_MAVEN_GOAL
+    - mvn $MAVEN_CLI_OPTS clean deploy $SONAR_MAVEN_GOAL
       -Dsonar.host.url=$SonarQube_URL -Dsonar.gitlab.project_id=$CI_PROJECT_PATH -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA
+      -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.max_blocker_issues_gate=-1 -Dsonar.gitlab.max_critical_issues_gate=-1
   only:
     - master
 
-deploy_master:
-  stage: deploy
-  script:
-    - mvn $MAVEN_CLI_OPTS clean deploy
-  only:
-    - master
-
+# le deploiement des releases se fait sur le depot OSSRH de Sonatype, puis se progage automatiquement sur Maven Central
+# attention : dans GitLab, ajuster les valeurs de SCM_USER et de SCM_PASSWORD (mdp technique)
 release_master:
   stage: release
-  before_script:
-    - echo "=========Openshift runner specific script=========="
-    - user_id=$(id -u)
-    - line_content="${USER_NAME:-default}:x:$user_id:0:${USER_NAME:-default} user:${HOME}:/bin/bash"
-    - echo "$line_content" >> /etc/passwd
-    - pwd
-    - ls -hal ./
   script:
-    - git config --global user.email "$RUNNER_EMAIL"
-    - git config --global user.name "$RUNNER_USERNAME"
+    - ls -l $KEYSTORE_DIR
+    - git config user.email $SCM_EMAIL
+    - git config user.name $SCM_USER
     - git checkout $CI_COMMIT_REF_NAME
-    - mvn $MAVEN_CLI_OPTS release:prepare release:perform -Dresume=false -Darguments="-DskipTests -Dmaven.javadoc.skip=true" -DignoreSnapshots=true -Dusername=$GITLAB_USER -Dpassword=$GITLAB_PASSWORD
-  artifacts:
-    paths:
-      - target/*.jar
+    - mvn $MAVEN_CLI_OPTS clean release:prepare release:perform
+      -Possrh,maven-central
+      -Dresume=false
+      -Dusername=$SCM_USER -Dpassword=$SCM_PASSWORD
+      -DscmCommentPrefix="[skip ci] "
+      -Darguments="
+      -DskipTests=true
+      -Dgpg.passphrase=$GPG_PASSPHRASE
+      -Djavax.net.ssl.trustStore=$KEYSTORE_DIR/mavenKeystore
+      "
   when: manual
