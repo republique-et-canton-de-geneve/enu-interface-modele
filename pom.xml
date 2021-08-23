@@ -4,13 +4,13 @@
 
     <!-- le groupId doit commencer par "ch.ge.etat" afin que le JAR puisse etre pousse sur Maven Central -->
     <groupId>ch.ge.etat.ael.enu</groupId>
-    <artifactId>enu-interface-model</artifactId>
+    <artifactId>enu-interface-modele</artifactId>
     <version>0.19-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>enu-model</name>
+    <name>enu-modele</name>
     <description>Modèle objet pour l'API externe de l'ENU</description>
-    <url>https://github.com/Espace-numerique-de-l-usager/enu-interface-model</url>
+    <url>https://github.com/Espace-numerique-de-l-usager/enu-interface-modele</url>
 
     <licenses>
         <license>
