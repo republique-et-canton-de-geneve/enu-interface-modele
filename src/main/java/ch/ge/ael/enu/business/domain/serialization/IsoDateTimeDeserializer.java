@@ -1,5 +1,5 @@
 /*
- * Espace numerique de l'usager - enu-mediation
+ * Espace numerique de l'usager - enu-interface-modele
  *
  * Copyright (C) 2021 Republique et canton de Geneve
  *
