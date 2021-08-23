@@ -21,7 +21,7 @@ stages:
   - build
   - release
 
-# le deploiement des snapshots se fait sur le depot Nexus de l'Etat, afin que le JAR soit rapidement disponible
+# Le deploiement des snapshots se fait sur le depot Nexus de l'Etat, afin que le JAR soit rapidement disponible.
 build_and_sonar:
   stage: build
   script:
@@ -31,8 +31,9 @@ build_and_sonar:
   only:
     - master
 
-# le deploiement des releases se fait sur le depot OSSRH de Sonatype, puis se progage automatiquement sur Maven Central
-# attention : dans GitLab, ajuster les valeurs de SCM_USER et de SCM_PASSWORD (mdp technique)
+# Le deploiement des releases se fait sur le depot OSSRH de Sonatype, puis se progage automatiquement sur Maven Central.
+# Attention : dans GitLab, ajuster les valeurs de SCM_USER et de SCM_PASSWORD (mdp technique)
+# Le serveur SonarQube est celui de l'Etat. Pour SonarCloud, voir le fichier maven.yml.
 release_master:
   stage: release
   script:
