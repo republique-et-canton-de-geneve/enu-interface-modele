@@ -2,15 +2,15 @@
 
 Build GitHub :
 
-[![Build with GitHub](https://github.com/republique-et-canton-de-geneve/gina-ldap-client/actions/workflows/maven.yml/badge.svg)](https://github.com/republique-et-canton-de-geneve/gina-ldap-client/actions/workflows/maven.yml)
+[![Build with GitHub](https://github.com/Espace-numerique-de-l-usager/enu-interface-modele/actions/workflows/maven.yml/badge.svg)](https://github.com/Espace-numerique-de-l-usager/enu-interface-modele/actions/workflows/maven.yml)
 
 Analyse SonarCloud :
 
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=republique-et-canton-de-geneve_gina-ldap-client&metric=bugs)](https://sonarcloud.io/dashboard?id=republique-et-canton-de-geneve_gina-ldap-client)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=republique-et-canton-de-geneve_gina-ldap-client&metric=code_smells)](https://sonarcloud.io/dashboard?id=republique-et-canton-de-geneve_gina-ldap-client)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=republique-et-canton-de-geneve_gina-ldap-client&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=republique-et-canton-de-geneve_gina-ldap-client)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=republique-et-canton-de-geneve_gina-ldap-client&metric=coverage)](https://sonarcloud.io/dashboard?id=republique-et-canton-de-geneve_gina-ldap-client)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=republique-et-canton-de-geneve_gina-ldap-client&metric=alert_status)](https://sonarcloud.io/dashboard?id=republique-et-canton-de-geneve_gina-ldap-client)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Espace-numerique-de-l-usager_enu-interface-modele&metric=bugs)](https://sonarcloud.io/dashboard?id=Espace-numerique-de-l-usager_enu-interface-modele)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Espace-numerique-de-l-usager_enu-interface-modele&metric=code_smells)](https://sonarcloud.io/dashboard?id=Espace-numerique-de-l-usager_enu-interface-modele)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Espace-numerique-de-l-usager_enu-interface-modele&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=Espace-numerique-de-l-usager_enu-interface-modele)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Espace-numerique-de-l-usager_enu-interface-modele&metric=coverage)](https://sonarcloud.io/dashboard?id=Espace-numerique-de-l-usager_enu-interface-modele)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Espace-numerique-de-l-usager_enu-interface-modele&metric=alert_status)](https://sonarcloud.io/dashboard?id=Espace-numerique-de-l-usager_enu-interface-modele)
 
 Licence :
 
