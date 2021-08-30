@@ -32,9 +32,8 @@ build_and_sonar:
     - master
 
 # Le deploiement des releases se fait sur le depot OSSRH de Sonatype, puis se progage automatiquement sur Maven Central.
-# Attention : dans GitLab, ajuster les valeurs de SCM_USER et de SCM_PASSWORD (mdp technique)
 # Le serveur SonarQube est celui de l'Etat. Pour SonarCloud, voir le fichier maven.yml.
-release_master:
+release:
   stage: release
   script:
     - ls -l $KEYSTORE_DIR
@@ -50,5 +49,23 @@ release_master:
       -DskipTests=true
       -Dgpg.passphrase=$GPG_PASSPHRASE
       -Djavax.net.ssl.trustStore=$KEYSTORE_DIR/mavenKeystore
+      "
+  when: manual
+
+# Temporaire, le temps de stabiliser les sources de ce projet.
+# Ne publie pas sur Maven Central, publie uniquement sur le Nexus de l'Etat, evitant les temps d'attente.
+# A supprimer des que possible.
+quick_release:
+  stage: release
+  script:
+    - git config user.email $SCM_EMAIL
+    - git config user.name $SCM_USER
+    - git checkout $CI_COMMIT_REF_NAME
+    - mvn $MAVEN_CLI_OPTS clean release:prepare release:perform
+      -Dresume=false
+      -Dusername=$SCM_USER -Dpassword=$SCM_PASSWORD
+      -DscmCommentPrefix="[skip ci] "
+      -Darguments="
+      -DskipTests=true
       "
   when: manual
