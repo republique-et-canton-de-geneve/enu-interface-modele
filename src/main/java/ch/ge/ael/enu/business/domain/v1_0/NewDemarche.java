@@ -48,11 +48,6 @@ import static ch.ge.ael.enu.business.domain.v1_0.DemarcheStatus.TERMINEE;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Slf4j
 @NotNullIfAnotherFieldHasValue(
-        message = "doit être présent si etat=DEPOSEE",
-        fieldName = "etat",
-        fieldValue = "DEPOSEE",
-        dependFieldNames = {"libelleAction","dateDepot"})
-@NotNullIfAnotherFieldHasValue(
         message = "doit être présent si etat=EN_TRAITEMENT",
         fieldName = "etat",
         fieldValue = "EN_TRAITEMENT",
@@ -74,7 +69,7 @@ import static ch.ge.ael.enu.business.domain.v1_0.DemarcheStatus.TERMINEE;
 )
 @NotNullIfAnotherFieldIsNotNull(
         fieldName = "libelleAction",
-        dependFieldNames = {"urlAction"},
+        dependFieldNames = {"urlAction","typeAction"},
         message = "doit être présent si libelleAction est présent"
 )
 @NotNullIfAnotherFieldIsNotNull(
