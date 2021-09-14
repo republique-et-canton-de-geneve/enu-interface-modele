@@ -72,7 +72,7 @@ public class StatusChange {
     @Size(min=1, max=20)
     @ValueOfEnum(enumClass = DemarcheStatus.class)
     @Schema(allowableValues = {"BROUILLON","DEPOSEE","EN_TRAITEMENT","TERMINEE"})
-    private String nouvelEtat = null;
+    private DemarcheStatus nouvelEtat = null;
 
     @NotNull
     @PastOrPresent
@@ -83,7 +83,7 @@ public class StatusChange {
 
     @ValueOfEnum(enumClass = ActionType.class)
     @Schema(allowableValues = {"ENRICHISSEMENT_DE_DEMANDE","REPONSE_DEMANDE_RENSEIGNEMENT"})
-    private String typeAction;
+    private ActionType typeAction;
 
     private URL urlAction;
 

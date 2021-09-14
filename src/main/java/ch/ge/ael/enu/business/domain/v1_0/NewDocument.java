@@ -40,40 +40,37 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NewDocument {
 
-    @Size(min=1,max=50)
+    @Size(min = 1, max = 50)
     private String idPrestation = null;
 
     @NotBlank
-    @Size(min=1,max=50)
+    @Size(min = 1, max = 50)
     private String idUsager = null;
 
-    @Size(min=1,max=50)
+    @Size(min = 1, max = 50)
     private String idDemarcheSiMetier = null;
 
     @ValueOfEnum(enumClass = DocumentType.class)
-    @Schema(allowableValues = {"JUSTIFICATIF","RECAPITULATIF"})
-    private String typeDocument = null;
+    @Schema(allowableValues = {"JUSTIFICATIF", "RECAPITULATIF"})
+    private DocumentType typeDocument = null;
 
     @NotBlank
-    @Size(min=1, max=50)
+    @Size(min = 1, max = 50)
     private String libelleDocument = null;
 
     @NotBlank
-    @Size(min=1, max=50)
+    @Size(min = 1, max = 50)
     private String idDocumentSiMetier = null;
 
     @NotBlank
-    @Size(min=1, max=50)
+    @Size(min = 1, max = 50)
     private String mime = null;
 
-//    private static final List<String> ALLOWED_TYPES= Arrays.asList(
-//            "application/pdf", "application/png"
-//    );
-private static final List<String> ALLOWED_TYPES= Collections.singletonList(
-        "application/pdf"
-);
+    private static final List<String> ALLOWED_TYPES = Collections.singletonList(
+            "application/pdf"
+    );
 
-    @Size(min=1, max=200*1024*1024)
+    @Size(min = 1, max = 200 * 1024 * 1024)
     private String contenu = null;
 
     private GedData ged = null;
@@ -81,7 +78,7 @@ private static final List<String> ALLOWED_TYPES= Collections.singletonList(
     @JsonIgnore
     @AssertTrue
     boolean isValidated() {
-        if(!ALLOWED_TYPES.contains(mime)) {
+        if (!ALLOWED_TYPES.contains(mime)) {
             log.warn("Erreur metier : type MIME [{}] pas pris en charge", mime);
             throw new ValidationException("La valeur \"" + mime
                     + "\" du champ \"mime\" n'est pas valide." +

@@ -94,14 +94,14 @@ public class NewDemarche {
     @NotBlank
     @ValueOfEnum(enumClass = DemarcheStatus.class)
     @Schema(allowableValues = {"BROUILLON","DEPOSEE","EN_TRAITEMENT","TERMINEE"})
-    private String etat;
+    private DemarcheStatus etat;
 
     @Size(max=250)
     private String libelleAction;
 
     @ValueOfEnum(enumClass = ActionType.class)
     @Schema(allowableValues = {"ENRICHISSEMENT_DE_DEMANDE","REPONSE_DEMANDE_RENSEIGNEMENT"})
-    private String typeAction;
+    private ActionType typeAction;
 
     private URL urlAction;
 
@@ -118,12 +118,11 @@ public class NewDemarche {
     @JsonIgnore
     @AssertTrue
     public Boolean isValidated() {
-        boolean result = true;
-        if (DemarcheStatus.valueOf(etat) == TERMINEE) {
+        if (etat.equals(TERMINEE)) {
             log.warn("Erreur metier : on ne peut pas creer de demarche a l'etat {}", TERMINEE);
             throw new ValidationException("On ne peut pas creer de demarche directement a l'etat " + TERMINEE);
         }
 
-        return result;
+        return true;
     }
 }
