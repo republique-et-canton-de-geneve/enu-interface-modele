@@ -5,7 +5,7 @@
     <!-- le groupId doit commencer par "ch.ge.etat" afin que le JAR puisse etre pousse sur Maven Central -->
     <groupId>ch.ge.etat.ael.enu</groupId>
     <artifactId>enu-interface-modele</artifactId>
-    <version>0.23-SNAPSHOT</version>
+    <version>0.23</version>
     <packaging>jar</packaging>
 
     <name>enu-interface-modele</name>
@@ -43,7 +43,7 @@
         <connection>scm:git:${env.GITLAB_URL}/enu-interface-modele.git</connection>
         <developerConnection>scm:git:${env.GITLAB_URL}/enu-interface-modele.git</developerConnection>
         <url>${env.GITLAB_URL}/enu-interface-modele.git</url>
-        <tag>HEAD</tag>
+        <tag>enu-interface-modele-0.23</tag>
     </scm>
 
     <distributionManagement>
