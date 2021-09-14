@@ -31,10 +31,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.ValidationException;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -91,7 +88,7 @@ public class NewDemarche {
     @Size(max=50)
     private String idDemarcheSiMetier;
 
-    @NotBlank
+    @NotNull
 //    @ValueOfEnum(enumClass = DemarcheStatus.class)
 //    @Schema(allowableValues = {"BROUILLON","DEPOSEE","EN_TRAITEMENT","TERMINEE"})
     private DemarcheStatus etat;

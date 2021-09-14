@@ -68,7 +68,7 @@ public class StatusChange {
     @Size(min=1, max=50)
     private String idDemarcheSiMetier = null;
 
-    @NotBlank
+    @NotNull
 //    @ValueOfEnum(enumClass = DemarcheStatus.class)
 //    @Schema(allowableValues = {"BROUILLON","DEPOSEE","EN_TRAITEMENT","TERMINEE"})
     private DemarcheStatus nouvelEtat = null;
