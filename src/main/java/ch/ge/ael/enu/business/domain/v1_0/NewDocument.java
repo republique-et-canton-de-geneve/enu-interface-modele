@@ -50,8 +50,8 @@ public class NewDocument {
     @Size(min = 1, max = 50)
     private String idDemarcheSiMetier = null;
 
-    @ValueOfEnum(enumClass = DocumentType.class)
-    @Schema(allowableValues = {"JUSTIFICATIF", "RECAPITULATIF"})
+//    @ValueOfEnum(enumClass = DocumentType.class)
+//    @Schema(allowableValues = {"JUSTIFICATIF", "RECAPITULATIF"})
     private DocumentType typeDocument = null;
 
     @NotBlank

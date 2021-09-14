@@ -92,15 +92,15 @@ public class NewDemarche {
     private String idDemarcheSiMetier;
 
     @NotBlank
-    @ValueOfEnum(enumClass = DemarcheStatus.class)
-    @Schema(allowableValues = {"BROUILLON","DEPOSEE","EN_TRAITEMENT","TERMINEE"})
+//    @ValueOfEnum(enumClass = DemarcheStatus.class)
+//    @Schema(allowableValues = {"BROUILLON","DEPOSEE","EN_TRAITEMENT","TERMINEE"})
     private DemarcheStatus etat;
 
     @Size(max=250)
     private String libelleAction;
 
-    @ValueOfEnum(enumClass = ActionType.class)
-    @Schema(allowableValues = {"ENRICHISSEMENT_DE_DEMANDE","REPONSE_DEMANDE_RENSEIGNEMENT"})
+//    @ValueOfEnum(enumClass = ActionType.class)
+//    @Schema(allowableValues = {"ENRICHISSEMENT_DE_DEMANDE","REPONSE_DEMANDE_RENSEIGNEMENT"})
     private ActionType typeAction;
 
     private URL urlAction;

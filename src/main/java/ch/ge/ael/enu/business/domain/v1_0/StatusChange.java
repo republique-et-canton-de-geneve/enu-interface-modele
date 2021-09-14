@@ -69,9 +69,8 @@ public class StatusChange {
     private String idDemarcheSiMetier = null;
 
     @NotBlank
-    @Size(min=1, max=20)
-    @ValueOfEnum(enumClass = DemarcheStatus.class)
-    @Schema(allowableValues = {"BROUILLON","DEPOSEE","EN_TRAITEMENT","TERMINEE"})
+//    @ValueOfEnum(enumClass = DemarcheStatus.class)
+//    @Schema(allowableValues = {"BROUILLON","DEPOSEE","EN_TRAITEMENT","TERMINEE"})
     private DemarcheStatus nouvelEtat = null;
 
     @NotNull
@@ -81,8 +80,8 @@ public class StatusChange {
     @Size(max=250)
     private String libelleAction;
 
-    @ValueOfEnum(enumClass = ActionType.class)
-    @Schema(allowableValues = {"ENRICHISSEMENT_DE_DEMANDE","REPONSE_DEMANDE_RENSEIGNEMENT"})
+//    @ValueOfEnum(enumClass = ActionType.class)
+//    @Schema(allowableValues = {"ENRICHISSEMENT_DE_DEMANDE","REPONSE_DEMANDE_RENSEIGNEMENT"})
     private ActionType typeAction;
 
     private URL urlAction;
