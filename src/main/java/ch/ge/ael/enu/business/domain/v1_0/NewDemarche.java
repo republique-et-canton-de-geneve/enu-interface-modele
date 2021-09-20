@@ -53,12 +53,12 @@ import static ch.ge.ael.enu.business.domain.v1_0.DemarcheStatus.TERMINEE;
         message = "doit être présent si etat=BROUILLON",
         fieldName = "etat",
         fieldValue = "BROUILLON",
-        dependFieldNames = {"libelleAction","urlAction","typeAction"})
-@NullIfAnotherFieldIsNull(
-        fieldName = "libelleAction",
-        dependFieldNames = {"dateEcheanceAction"},
-        message = "doit être null si libelleAction=null"
-)
+        dependFieldNames = {"urlAction"})
+//@NullIfAnotherFieldIsNull(
+//        fieldName = "libelleAction",
+//        dependFieldNames = {"dateEcheanceAction"},
+//        message = "doit être null si libelleAction=null"
+//)
 @NullIfAnotherFieldIsNull(
         fieldName = "urlAction",
         dependFieldNames = {"dateEcheanceAction"},

@@ -22,6 +22,8 @@ public enum DocumentType {
 
     JUSTIFICATIF,
 
-    RECAPITULATIF;
+    RECAPITULATIF,
+
+    COURRIER;
 
 }
