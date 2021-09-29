@@ -24,11 +24,11 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Data
-@JsonIgnoreProperties(ignoreUnknown = true)
 /**
  * Identifiants GED d'un document.
  */
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GedData {
 
     @NotBlank

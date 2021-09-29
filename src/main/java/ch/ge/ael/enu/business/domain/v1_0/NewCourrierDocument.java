@@ -20,6 +20,7 @@ package ch.ge.ael.enu.business.domain.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Structure resultant de la scission d'un NewCourrier en n documents.
@@ -29,12 +30,9 @@ import lombok.Data;
  * Les informations definissant l'en-tete du courrier sont donc dupliquees dans chaque document.
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NewCourrierDocument {
-
-    private String idPrestation = null;
-
-    private String idUsager = null;
+public class NewCourrierDocument extends MessageENU {
 
     private String idDemarcheSiMetier = null;
 

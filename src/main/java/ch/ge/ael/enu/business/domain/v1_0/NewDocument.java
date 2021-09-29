@@ -18,11 +18,10 @@
  */
 package ch.ge.ael.enu.business.domain.v1_0;
 
-import ch.ge.ael.enu.business.domain.validation.ValueOfEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.ValidationException;
@@ -36,22 +35,13 @@ import java.util.List;
  * Donnees contenues dans un message JSON d'ajout d'un document a une demarche existante.
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Slf4j
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NewDocument {
+public class NewDocument extends MessageENU {
 
-    @Size(min = 1, max = 50)
-    private String idPrestation = null;
-
-    @NotBlank
-    @Size(min = 1, max = 50)
-    private String idUsager = null;
-
-    @Size(min = 1, max = 50)
     private String idDemarcheSiMetier = null;
 
-//    @ValueOfEnum(enumClass = DocumentType.class)
-//    @Schema(allowableValues = {"JUSTIFICATIF", "RECAPITULATIF"})
     private DocumentType typeDocument = null;
 
     @NotBlank
@@ -70,7 +60,7 @@ public class NewDocument {
             "application/pdf"
     );
 
-    @Size(min = 1, max = 200 * 1024 * 1024)
+    @Size(max = 200 * 1024 * 1024)
     private String contenu = null;
 
     private GedData ged = null;

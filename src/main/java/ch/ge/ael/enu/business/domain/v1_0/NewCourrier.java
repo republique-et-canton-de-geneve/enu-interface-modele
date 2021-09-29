@@ -21,6 +21,7 @@ package ch.ge.ael.enu.business.domain.v1_0;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -31,22 +32,14 @@ import java.util.List;
  * Donnees contenues dans un message JSON de creation d'un courrier, lie ou non a une demarche existante.
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NewCourrier {
+public class NewCourrier extends MessageENU {
 
-    @NotBlank
-    @Size(min=1, max = 50)
-    private String idPrestation = null;
-
-    @NotBlank
-    @Size(min=1, max = 50)
-    private String idUsager = null;
-
-    @Size(min=1, max = 50)
     private String idDemarcheSiMetier = null;
 
     @NotBlank
-    @Size(min=1, max = 50)
+    @Size(max = 50)
     private String libelleCourrier = null;
 
     @NotEmpty
