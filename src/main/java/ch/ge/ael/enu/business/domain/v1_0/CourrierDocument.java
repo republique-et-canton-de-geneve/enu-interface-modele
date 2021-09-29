@@ -32,7 +32,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NewCourrierDocument extends MessageENU {
+public class CourrierDocument extends MessageENU {
 
     private String idDemarcheSiMetier = null;
 

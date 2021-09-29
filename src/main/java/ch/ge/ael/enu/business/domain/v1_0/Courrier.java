@@ -34,7 +34,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NewCourrier extends MessageENU {
+public class Courrier extends MessageENU {
 
     private String idDemarcheSiMetier = null;
 
@@ -44,7 +44,7 @@ public class NewCourrier extends MessageENU {
 
     @NotEmpty
     @Size(max = 20)
-    private List<NewDocument> documents = null;
+    private List<Document> documents = null;
 
     /**
      * Champ cree par la mediation, ajoute' ici par simplicite.

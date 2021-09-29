@@ -38,7 +38,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NewDocument extends MessageENU {
+public class Document extends MessageENU {
 
     private String idDemarcheSiMetier = null;
 
