@@ -29,6 +29,7 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -66,5 +67,12 @@ public class DocumentBinaire extends MessageENU {
     public String contenu;
 
     @NotBlank
+    @Size(max = 100)
     public String algorithmeHash;
+
+    @NotBlank
+    @Size(max = 4096)
+    public String hash;
+
+    public LocalDateTime dateEnvoi = null;
 }
