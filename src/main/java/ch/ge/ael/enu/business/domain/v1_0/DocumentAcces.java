@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -19,6 +20,7 @@ public class DocumentAcces extends MessageENU {
     @Size(max = 50)
     public String idDocumentSiMetier;
 
+    @NotNull
     @JsonDeserialize(using = IsoDateTimeDeserializer.class)
     public LocalDateTime dateConsultation;
 }
