@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DocumentAccess extends MessageENU {
+public class DocumentAcces extends MessageENU {
 
     @NotBlank
     @Size(max = 50)

@@ -18,42 +18,41 @@
  */
 package ch.ge.ael.enu.business.domain.v1_0;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
- * Donnees contenues dans un message JSON de creation d'un courrier, lie ou non a une demarche existante.
+ * Document inclus dans un courrier, avec contenu binaire en base64
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Courrier extends MessageENU {
+public class CourrierDocumentBinaire {
+
+    public static final int MAX_SIZE_BINARY = 200 * 1024 * 1024;
 
     @NotBlank
-    public String idDemarcheSiMetier;
+    public String libelleDocument;
 
     @NotBlank
-    @Size(max = 50)
-    public String libelleCourrier;
+    public String idDocumentSiMetier;
 
-    @NotEmpty
-    @Size(max = 20)
-    public List<CourrierDocument> documents;
+    @NotBlank
+    public String mime;
 
-    public LocalDateTime dateEnvoi;
+    @NotBlank
+    @Size(max = MAX_SIZE_BINARY)
+    public String contenu;
 
-    /**
-     * Champ cree par la mediation, ajoute' ici par simplicite.
-     */
-    @JsonIgnore
-    public String clef;
+    @NotBlank
+    @Size(max = 100)
+    public String algorithmeHash;
 
+    @NotBlank
+    @Size(max = 4096)
+    public String hash;
 }

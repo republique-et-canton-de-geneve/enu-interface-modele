@@ -33,22 +33,17 @@ public class GedData {
 
     @NotBlank
     @Size(max=100)
-    private String fournisseur = null;
-
-    @NotBlank
-    @Size(max=50)
-    private String version = null;
+    public String fournisseur;
 
     @NotBlank
     @Size(max=200)
-    private String idDocument = null;
+    public String idDocument;
 
     @NotBlank
     @Size(max=100)
-    private String algorithmeHash = null;
+    public String algorithmeHash;
 
     @NotBlank
-    @Size(max=500)
-    private String hash = null;
-
+    @Size(max=4096)
+    public String hash;
 }

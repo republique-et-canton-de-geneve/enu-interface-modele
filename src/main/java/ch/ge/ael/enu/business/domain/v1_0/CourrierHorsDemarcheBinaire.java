@@ -26,7 +26,6 @@ import lombok.EqualsAndHashCode;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -35,10 +34,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Courrier extends MessageENU {
-
-    @NotBlank
-    public String idDemarcheSiMetier;
+public class CourrierHorsDemarcheBinaire extends MessageENU {
 
     @NotBlank
     @Size(max = 50)
@@ -46,14 +42,12 @@ public class Courrier extends MessageENU {
 
     @NotEmpty
     @Size(max = 20)
-    public List<CourrierDocument> documents;
-
-    public LocalDateTime dateEnvoi;
+    public List<CourrierDocumentBinaire> documents;
 
     /**
      * Champ cree par la mediation, ajoute' ici par simplicite.
      */
     @JsonIgnore
-    public String clef;
+    public String clef = null;
 
 }

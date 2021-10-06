@@ -18,18 +18,15 @@
  */
 package ch.ge.ael.enu.business.domain.v1_0;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.validation.ValidationException;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Collections;
-import java.util.List;
+import java.time.LocalDateTime;
 
 /**
  * Donnees contenues dans un message JSON d'ajout d'un document a une demarche existante.
@@ -40,40 +37,26 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Document extends MessageENU {
 
-    private String idDemarcheSiMetier = null;
+    @NotBlank
+    public String idDemarcheSiMetier;
 
-    private DocumentType typeDocument = null;
+    @NotNull
+    public DocumentType typeDocument;
 
     @NotBlank
-    @Size(min = 1, max = 50)
-    private String libelleDocument = null;
+    @Size(max = 50)
+    public String libelleDocument;
 
     @NotBlank
-    @Size(min = 1, max = 50)
-    private String idDocumentSiMetier = null;
+    @Size(max = 50)
+    public String idDocumentSiMetier;
 
     @NotBlank
-    @Size(min = 1, max = 50)
-    private String mime = null;
+    @Size(max = 50)
+    public String mime;
 
-    private static final List<String> ALLOWED_TYPES = Collections.singletonList(
-            "application/pdf"
-    );
+    public LocalDateTime dateEnvoi = null;
 
-    @Size(max = 200 * 1024 * 1024)
-    private String contenu = null;
-
-    private GedData ged = null;
-
-    @JsonIgnore
-    @AssertTrue
-    boolean isValidated() {
-        if (!ALLOWED_TYPES.contains(mime)) {
-            log.warn("Erreur metier : type MIME [{}] pas pris en charge", mime);
-            throw new ValidationException("La valeur \"" + mime
-                    + "\" du champ \"mime\" n'est pas valide." +
-                    " Les types MIME pris en charge sont : " + ALLOWED_TYPES);
-        }
-        return true;
-    }
+    @NotNull
+    public GedData ged;
 }

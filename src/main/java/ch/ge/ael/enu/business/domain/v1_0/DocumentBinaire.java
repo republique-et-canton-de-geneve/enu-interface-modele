@@ -22,38 +22,49 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.extern.slf4j.Slf4j;
 
+import javax.validation.ValidationException;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 /**
- * Donnees contenues dans un message JSON de creation d'un courrier, lie ou non a une demarche existante.
+ * Donnees contenues dans un message JSON d'ajout d'un document a une demarche existante.
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Slf4j
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Courrier extends MessageENU {
+public class DocumentBinaire extends MessageENU {
+
+    public static final int MAX_SIZE_BINARY =  200 * 1024 * 1024 ;
 
     @NotBlank
     public String idDemarcheSiMetier;
 
+    @NotNull
+    public DocumentType typeDocument;
+
     @NotBlank
     @Size(max = 50)
-    public String libelleCourrier;
+    public String libelleDocument;
 
-    @NotEmpty
-    @Size(max = 20)
-    public List<CourrierDocument> documents;
+    @NotBlank
+    @Size(max = 50)
+    public String idDocumentSiMetier;
 
-    public LocalDateTime dateEnvoi;
+    @NotBlank
+    @Size(max = 50)
+    public String mime;
 
-    /**
-     * Champ cree par la mediation, ajoute' ici par simplicite.
-     */
-    @JsonIgnore
-    public String clef;
+    @NotBlank
+    @Size(max = MAX_SIZE_BINARY)
+    public String contenu;
 
+    @NotBlank
+    public String algorithmeHash;
 }

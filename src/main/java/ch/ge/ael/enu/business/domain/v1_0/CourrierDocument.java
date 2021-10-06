@@ -22,42 +22,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
+
 /**
- * Structure resultant de la scission d'un NewCourrier en n documents.
- * Cette classe definit un de ces n documents.
- * Plus exactement elle definit un objet contenant les informations de l'en-tete du courrier, plus les informations
- * d'un des documents contenus dans le courrier.
- * Les informations definissant l'en-tete du courrier sont donc dupliquees dans chaque document.
+ * Document inclus dans un courrier, avec référence GED
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CourrierDocument extends MessageENU {
+public class CourrierDocument {
 
-    private String idDemarcheSiMetier = null;
+    @NotBlank
+    public String libelleDocument;
 
-    private String libelleCourrier = null;
+    @NotBlank
+    public String idDocumentSiMetier;
 
-    private String clefCourrier = null;
+    @NotBlank
+    public String mime;
 
-    private String idDocumentSiMetier = null;
-
-    private String libelleDocument = null;
-
-    private String mime = null;
-
-    private String contenu = null;
-
+    @NotNull
     private GedData ged;
-
-    /**
-     * Position du document parmi tous les documents du courrier.
-     */
-    private int index;
-
-    /**
-     * Nombre de documents dans le courrier.
-     */
-    private int nbDocuments;
-
 }

@@ -35,7 +35,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Courrier extends MessageENU {
+public class CourrierBinaire extends MessageENU {
 
     @NotBlank
     public String idDemarcheSiMetier;
@@ -46,7 +46,7 @@ public class Courrier extends MessageENU {
 
     @NotEmpty
     @Size(max = 20)
-    public List<CourrierDocument> documents;
+    public List<CourrierDocumentBinaire> documents;
 
     public LocalDateTime dateEnvoi;
 
