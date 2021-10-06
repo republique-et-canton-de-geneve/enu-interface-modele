@@ -35,5 +35,6 @@ public class DemarcheActionRequise extends MessageENU {
     public ActionType typeAction;
 
     @Future
+    @JsonDeserialize(using = IsoDateTimeDeserializer.class)
     public LocalDate dateEcheanceAction;
 }
