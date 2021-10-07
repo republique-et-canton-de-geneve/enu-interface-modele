@@ -18,20 +18,15 @@
  */
 package ch.ge.ael.enu.business.domain.v1_0;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.validation.ValidationException;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Donnees contenues dans un message JSON d'ajout d'un document a une demarche existante.
@@ -40,7 +35,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DocumentBinaire extends MessageENU {
+public class DocumentUsagerBinaire extends MessageENU {
 
     public static final int MAX_SIZE_BINARY =  200 * 1024 * 1024 ;
 

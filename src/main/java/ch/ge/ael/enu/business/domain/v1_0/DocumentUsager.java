@@ -35,7 +35,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Document extends MessageENU {
+public class DocumentUsager extends MessageENU {
 
     @NotBlank
     public String idDemarcheSiMetier;
