@@ -37,7 +37,7 @@ public class GedData {
 
     @NotBlank
     @Size(max=50)
-    private String version = null;
+    private String version;
 
     @NotBlank
     @Size(max=200)
