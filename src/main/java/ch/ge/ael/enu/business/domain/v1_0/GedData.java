@@ -36,6 +36,10 @@ public class GedData {
     public String fournisseur;
 
     @NotBlank
+    @Size(max=50)
+    private String version = null;
+
+    @NotBlank
     @Size(max=200)
     public String idDocument;
 
