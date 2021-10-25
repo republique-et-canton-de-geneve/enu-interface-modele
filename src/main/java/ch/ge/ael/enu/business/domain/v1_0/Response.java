@@ -18,12 +18,14 @@
  */
 package ch.ge.ael.enu.business.domain.v1_0;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
  * Reponse envoyee un a message.
  */
 @Data
+@Builder
 public class Response {
 
     private ResponseType resultat;

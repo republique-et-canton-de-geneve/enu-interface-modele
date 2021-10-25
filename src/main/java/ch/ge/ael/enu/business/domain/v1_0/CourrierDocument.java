@@ -19,6 +19,7 @@
 package ch.ge.ael.enu.business.domain.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -31,6 +32,7 @@ import java.time.LocalDateTime;
  * Document inclus dans un courrier, avec référence GED
  */
 @Data
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CourrierDocument {
 
