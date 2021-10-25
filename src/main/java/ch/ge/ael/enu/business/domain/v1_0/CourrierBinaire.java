@@ -20,9 +20,10 @@ package ch.ge.ael.enu.business.domain.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -34,7 +35,7 @@ import java.util.List;
  * Donnees contenues dans un message JSON de creation d'un courrier, lie ou non a une demarche existante.
  */
 @Data
-@Builder
+@Jacksonized @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CourrierBinaire extends MessageENU {

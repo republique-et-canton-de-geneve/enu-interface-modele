@@ -19,9 +19,10 @@
 package ch.ge.ael.enu.business.domain.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.constraints.NotBlank;
@@ -33,7 +34,7 @@ import java.time.LocalDateTime;
  * Donnees contenues dans un message JSON d'ajout d'un document a une demarche existante.
  */
 @Data
-@Builder
+@Jacksonized @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -71,5 +72,5 @@ public class DocumentUsagerBinaire extends MessageENU {
     @Size(max = 4096)
     public String hash;
 
-    public LocalDateTime dateEnvoi = null;
+    public LocalDateTime dateEnvoi;
 }

@@ -1,14 +1,15 @@
 package ch.ge.ael.enu.business.domain.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
-@Builder
+@Jacksonized @SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ModeReceptionDocuments {
     @NotBlank

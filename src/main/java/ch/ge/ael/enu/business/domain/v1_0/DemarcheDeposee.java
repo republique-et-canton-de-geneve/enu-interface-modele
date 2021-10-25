@@ -3,15 +3,16 @@ package ch.ge.ael.enu.business.domain.v1_0;
 import ch.ge.ael.enu.business.domain.serialization.IsoDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Data
-@Builder
+@Jacksonized @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DemarcheDeposee extends MessageENU implements Demarche {

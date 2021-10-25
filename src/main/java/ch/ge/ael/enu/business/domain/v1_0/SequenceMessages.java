@@ -1,12 +1,13 @@
 package ch.ge.ael.enu.business.domain.v1_0;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
 
 @Data
-@Builder
+@Jacksonized @SuperBuilder
 public class SequenceMessages {
     public List<MessageENU> messages;
 }
