@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DemarcheActionRequise extends MessageENU {
+public class DemarcheActionRequise extends MessageENU implements Demarche {
 
     @NotBlank
     public String idDemarcheSiMetier;

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DemarcheAbandonnee extends MessageENU {
+public class DemarcheAbandonnee extends MessageENU implements Demarche {
 
     @NotBlank
     public String idDemarcheSiMetier;
