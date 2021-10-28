@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
@@ -57,6 +58,7 @@ public class CourrierBinaire extends MessageENU {
      * Champ cree par la mediation, ajoute' ici par simplicite.
      */
     @JsonIgnore
+    @ToString.Exclude
     public String clef;
 
 }

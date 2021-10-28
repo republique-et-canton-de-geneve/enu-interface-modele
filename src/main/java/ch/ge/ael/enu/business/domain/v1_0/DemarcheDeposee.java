@@ -21,5 +21,6 @@ public class DemarcheDeposee extends MessageENU implements Demarche {
     public String idDemarcheSiMetier;
 
     @JsonDeserialize(using = IsoDateTimeDeserializer.class)
+    @EqualsAndHashCode.Exclude
     public LocalDateTime dateDepot;
 }

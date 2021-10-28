@@ -20,6 +20,7 @@ package ch.ge.ael.enu.business.domain.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
@@ -47,13 +48,16 @@ public class CourrierDocumentBinaire {
 
     @NotBlank
     @Size(max = MAX_SIZE_BINARY)
+    @ToString.Exclude
     public String contenu;
 
     @NotBlank
     @Size(max = 100)
+    @ToString.Exclude
     public String algorithmeHash;
 
     @NotBlank
     @Size(max = 4096)
+    @ToString.Exclude
     public String hash;
 }
