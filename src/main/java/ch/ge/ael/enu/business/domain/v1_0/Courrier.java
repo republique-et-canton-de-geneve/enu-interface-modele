@@ -40,7 +40,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Courrier extends MessageENU {
 
-    @NotBlank
     public String idDemarcheSiMetier;
 
     @NotBlank
