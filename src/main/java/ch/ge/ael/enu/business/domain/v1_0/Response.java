@@ -19,6 +19,7 @@
 package ch.ge.ael.enu.business.domain.v1_0;
 
 import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
@@ -27,6 +28,7 @@ import lombok.extern.jackson.Jacksonized;
  */
 @Data
 @Jacksonized @SuperBuilder
+@ToString(doNotUseGetters = true)
 public class Response {
 
     private ResponseType resultat;

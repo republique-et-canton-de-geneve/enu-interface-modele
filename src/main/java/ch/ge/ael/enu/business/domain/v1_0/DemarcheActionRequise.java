@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
@@ -20,6 +21,7 @@ import java.time.LocalDateTime;
 @Jacksonized @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ToString(callSuper = true, doNotUseGetters = true)
 public class DemarcheActionRequise extends MessageENU implements Demarche {
 
     @NotBlank

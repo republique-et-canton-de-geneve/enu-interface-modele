@@ -39,6 +39,7 @@ import java.util.List;
 @Jacksonized @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ToString(callSuper = true, doNotUseGetters = true)
 public class CourrierBinaire extends MessageENU {
 
     @NotBlank
@@ -59,6 +60,7 @@ public class CourrierBinaire extends MessageENU {
      */
     @JsonIgnore
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     public String clef;
 
 }

@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 
@@ -38,6 +39,7 @@ import java.util.List;
 @Jacksonized @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ToString(callSuper = true, doNotUseGetters = true)
 public class Courrier extends MessageENU {
 
     public String idDemarcheSiMetier;
@@ -56,6 +58,8 @@ public class Courrier extends MessageENU {
      * Champ cree par la mediation, ajoute' ici par simplicite.
      */
     @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     public String clef;
 
 }

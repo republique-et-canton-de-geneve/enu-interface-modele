@@ -20,6 +20,7 @@ package ch.ge.ael.enu.business.domain.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
@@ -33,6 +34,7 @@ import javax.validation.constraints.Size;
 @Data
 @Jacksonized @SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ToString(doNotUseGetters = true)
 public class CourrierDocumentBinaire {
 
     public static final int MAX_SIZE_BINARY = 200 * 1024 * 1024;
@@ -49,6 +51,7 @@ public class CourrierDocumentBinaire {
     @NotBlank
     @Size(max = MAX_SIZE_BINARY)
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     public String contenu;
 
     @NotBlank

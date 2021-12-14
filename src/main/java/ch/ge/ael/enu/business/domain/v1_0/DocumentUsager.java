@@ -21,6 +21,7 @@ package ch.ge.ael.enu.business.domain.v1_0;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ToString(callSuper = true, doNotUseGetters = true)
 public class DocumentUsager extends MessageENU {
 
     @NotBlank

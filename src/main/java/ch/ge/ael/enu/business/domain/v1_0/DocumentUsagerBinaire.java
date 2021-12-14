@@ -39,6 +39,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ToString(callSuper = true, doNotUseGetters = true)
 public class DocumentUsagerBinaire extends MessageENU {
 
     public static final int MAX_SIZE_BINARY =  200 * 1024 * 1024 ;
@@ -64,6 +65,7 @@ public class DocumentUsagerBinaire extends MessageENU {
     @NotBlank
     @Size(max = MAX_SIZE_BINARY)
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     public String contenu;
 
     @NotBlank
