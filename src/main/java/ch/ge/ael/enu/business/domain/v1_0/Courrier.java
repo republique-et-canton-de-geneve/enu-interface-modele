@@ -48,6 +48,9 @@ public class Courrier extends MessageENU {
     @Size(max = 50)
     public String libelleCourrier;
 
+    @Size(max = 64)
+    public String idCourrier;
+
     @NotEmpty
     @Size(max = 20)
     public List<CourrierDocument> documents;

@@ -29,6 +29,7 @@ import lombok.extern.jackson.Jacksonized;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -48,6 +49,11 @@ public class CourrierHorsDemarche extends MessageENU {
     @NotEmpty
     @Size(max = 20)
     public List<CourrierDocument> documents;
+
+    @Size(max = 64)
+    public String idCourrier;
+
+    public LocalDateTime dateEnvoi;
 
     /**
      * Champ cree par la mediation, ajoute' ici par simplicite.

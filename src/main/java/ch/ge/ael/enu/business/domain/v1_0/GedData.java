@@ -48,6 +48,9 @@ public class GedData {
     @Size(max=200)
     public String idDocument;
 
+    @Size(max=64)
+    public String cleArchivage;
+
     @NotBlank
     @Size(max=100)
     public String algorithmeHash;
