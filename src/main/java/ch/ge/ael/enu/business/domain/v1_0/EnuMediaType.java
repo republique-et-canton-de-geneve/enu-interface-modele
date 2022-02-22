@@ -43,6 +43,7 @@ public class EnuMediaType {
     public static final String SEQUENCE_MESSAGES = "application/sequence-enu-v1.0+json";
     public static final String SUGGESTION_ABANDON = "application/suggestion-abandon-v1.0+json";
     public static final String SUGGESTION = "application/suggestion-v1.0+json";
+    public static final String HEALTH_CHECK = "application/health-check-v1.0+json";
 
     public static final HashMap<String, TypeReference<?>> typeReferenceMap = new HashMap<String, TypeReference<?>>() {{
         put(BROUILLON_ABANDON, new TypeReference<BrouillonAbandon>(){});
@@ -64,6 +65,7 @@ public class EnuMediaType {
         put(SEQUENCE_MESSAGES, new TypeReference<SequenceMessages>(){});
         put(SUGGESTION_ABANDON, new TypeReference<SuggestionAbandon>(){});
         put(SUGGESTION, new TypeReference<Suggestion>(){});
+        put(HEALTH_CHECK, new TypeReference<HealthCheck>(){});
     }};
 
     private EnuMediaType() {
