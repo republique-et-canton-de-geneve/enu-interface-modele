@@ -36,6 +36,7 @@ import javax.validation.constraints.Size;
 @ToString(doNotUseGetters = true)
 public class GedData {
 
+    // Docubase UNIQUEMENT: DOCUBASE/1234_1234
     @NotBlank
     @Size(max=100)
     public String fournisseur;
