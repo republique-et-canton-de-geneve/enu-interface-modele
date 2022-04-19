@@ -24,25 +24,27 @@ import java.util.HashMap;
 
 public class EnuMediaType {
 
-    public static final String BROUILLON_ABANDON = "application/brouillon-abandon-v1.1+json";
-    public static final String BROUILLON_DEMARCHE = "application/brouillon-de-demarche-v1.1+json";
-    public static final String COURRIER = "application/courrier-v1.1+json";
-    public static final String COURRIER_HORS_DEMARCHE = "application/courrier-hors-demarche-v1.1+json";
-    public static final String DEMARCHE_ABANDONNEE = "application/demarche-abandonnee-v1.1+json";
-    public static final String DEMARCHE_ACTION_REQUISE = "application/demarche-action-requise-v1.1+json";
-    public static final String DEMARCHE_DEPOSEE = "application/demarche-deposee-v1.1+json";
-    public static final String DEMARCHE_EN_TRAITEMENT = "application/demarche-en-traitement-v1.1+json";
-    public static final String DEMARCHE_TERMINEE = "application/demarche-terminee-v1.1+json";
-    public static final String DOCUMENT_ACCES = "application/document-acces-v1.1+json";
-    public static final String DOCUMENT = "application/document-v1.1+json";
-    public static final String DOCUMENT_RECEPTION_MODE = "application/document-reception-mode-v1.1+json";
-    public static final String SEQUENCE_MESSAGES = "application/sequence-enu-v1.1+json";
-    public static final String SUGGESTION_ABANDON = "application/suggestion-abandon-v1.1+json";
-    public static final String SUGGESTION = "application/suggestion-v1.1+json";
-    public static final String HEALTH_CHECK = "application/health-check-v1.1+json";
-    public static final String CHANGEMENT_PREFERENCE = "application/changement-preference-v1.1+json";
-    public static final String LISTE_PREFERENCE = "application/liste-preference-v1.1+json";
-    public static final String DEMANDE_LISTE_PREFERENCE = "application/demande-liste-preference-v1.1+json";
+    public static final String VERSION = "1.1";
+
+    public static final String BROUILLON_ABANDON = "application/brouillon-abandon-v"+VERSION+"+json";
+    public static final String BROUILLON_DEMARCHE = "application/brouillon-de-demarche-v"+VERSION+"+json";
+    public static final String COURRIER = "application/courrier-v"+VERSION+"+json";
+    public static final String COURRIER_HORS_DEMARCHE = "application/courrier-hors-demarche-v"+VERSION+"+json";
+    public static final String DEMARCHE_ABANDONNEE = "application/demarche-abandonnee-v"+VERSION+"+json";
+    public static final String DEMARCHE_ACTION_REQUISE = "application/demarche-action-requise-v"+VERSION+"+json";
+    public static final String DEMARCHE_DEPOSEE = "application/demarche-deposee-v"+VERSION+"+json";
+    public static final String DEMARCHE_EN_TRAITEMENT = "application/demarche-en-traitement-v"+VERSION+"+json";
+    public static final String DEMARCHE_TERMINEE = "application/demarche-terminee-v"+VERSION+"+json";
+    public static final String DOCUMENT_ACCES = "application/document-acces-v"+VERSION+"+json";
+    public static final String DOCUMENT = "application/document-v"+VERSION+"+json";
+    public static final String DOCUMENT_RECEPTION_MODE = "application/document-reception-mode-v"+VERSION+"+json";
+    public static final String SEQUENCE_MESSAGES = "application/sequence-enu-v"+VERSION+"+json";
+    public static final String SUGGESTION_ABANDON = "application/suggestion-abandon-v"+VERSION+"+json";
+    public static final String SUGGESTION = "application/suggestion-v"+VERSION+"+json";
+    public static final String HEALTH_CHECK = "application/health-check-v"+VERSION+"+json";
+    public static final String CHANGEMENT_PREFERENCE = "application/changement-preference-v"+VERSION+"+json";
+    public static final String LISTE_PREFERENCE = "application/liste-preference-v"+VERSION+"+json";
+    public static final String DEMANDE_LISTE_PREFERENCE = "application/demande-liste-preference-v"+VERSION+"+json";
 
     public static final HashMap<String, TypeReference<?>> typeReferenceMap = new HashMap<String, TypeReference<?>>() {{
         put(BROUILLON_ABANDON, new TypeReference<BrouillonAbandon>(){});
