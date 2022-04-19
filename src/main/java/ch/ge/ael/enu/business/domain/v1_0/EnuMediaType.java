@@ -18,13 +18,14 @@
  */
 package ch.ge.ael.enu.business.domain.v1_0;
 
+import ch.ge.ael.enu.business.domain.Version;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.util.HashMap;
 
 public class EnuMediaType {
 
-    public static final String VERSION = "1.0";
+    public static final String VERSION = Version.V1_0;
 
     public static final String BROUILLON_ABANDON = "application/brouillon-abandon-v"+VERSION+"+json";
     public static final String BROUILLON_DEMARCHE = "application/brouillon-de-demarche-v"+VERSION+"+json";
