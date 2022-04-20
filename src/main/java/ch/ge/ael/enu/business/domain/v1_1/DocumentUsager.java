@@ -18,7 +18,6 @@
  */
 package ch.ge.ael.enu.business.domain.v1_1;
 
-import ch.ge.ael.enu.business.domain.v1_0.MessageENU;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,8 +1,6 @@
 package ch.ge.ael.enu.business.domain.v1_1;
 
 import ch.ge.ael.enu.business.domain.serialization.IsoDateTimeDeserializer;
-import ch.ge.ael.enu.business.domain.v1_0.Demarche;
-import ch.ge.ael.enu.business.domain.v1_0.MessageENU;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;

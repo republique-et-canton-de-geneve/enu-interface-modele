@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @ToString(doNotUseGetters = true)
 public class ModeReceptionDocuments {
     @NotBlank
-    public String idUsager;
+    public String identifiant;
 
     @NotNull
     public ReceptionChoix choixReception;
