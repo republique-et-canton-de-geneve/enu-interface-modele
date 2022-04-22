@@ -24,7 +24,6 @@ public class DemarcheTerminee extends MessageENU implements Demarche {
     public String idDemarcheSiMetier;
 
     @JsonDeserialize(using = IsoDateTimeDeserializer.class)
-    @EqualsAndHashCode.Exclude
     public LocalDateTime dateCloture;
 
     public URL urlRenouvellement;
