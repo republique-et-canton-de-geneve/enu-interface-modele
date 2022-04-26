@@ -31,7 +31,6 @@ public class Suggestion extends MessageENU {
     public URL urlAction;
 
     @Future
-    @JsonDeserialize(using = IsoDateTimeDeserializer.class)
     public LocalDate dateEcheanceAction;
 
     @NotBlank
