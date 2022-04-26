@@ -1,8 +1,6 @@
 package ch.ge.ael.enu.business.domain.v1_1;
 
-import ch.ge.ael.enu.business.domain.serialization.IsoDateTimeDeserializer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -26,6 +24,5 @@ public class BrouillonDemarche extends MessageENU {
     @NotNull
     public URL urlAction;
 
-    @JsonDeserialize(using = IsoDateTimeDeserializer.class)
     public LocalDate dateEcheanceAction;
 }
