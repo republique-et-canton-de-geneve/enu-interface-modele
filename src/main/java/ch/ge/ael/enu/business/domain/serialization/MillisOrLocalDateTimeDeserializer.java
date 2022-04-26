@@ -18,7 +18,6 @@
  */
 package ch.ge.ael.enu.business.domain.serialization;
 
-import ch.ge.ael.enu.business.domain.v1_0.DemarcheDeposee;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
