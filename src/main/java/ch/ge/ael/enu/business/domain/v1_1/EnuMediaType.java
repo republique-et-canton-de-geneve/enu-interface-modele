@@ -38,7 +38,6 @@ public class EnuMediaType {
     public static final String DEMARCHE_TERMINEE = "application/demarche-terminee-v"+VERSION+"+json";
     public static final String DOCUMENT_ACCES = "application/document-acces-v"+VERSION+"+json";
     public static final String DOCUMENT = "application/document-v"+VERSION+"+json";
-    public static final String DOCUMENT_RECEPTION_MODE = "application/document-reception-mode-v"+VERSION+"+json";
     public static final String SEQUENCE_MESSAGES = "application/sequence-enu-v"+VERSION+"+json";
     public static final String SUGGESTION_ABANDON = "application/suggestion-abandon-v"+VERSION+"+json";
     public static final String SUGGESTION = "application/suggestion-v"+VERSION+"+json";
@@ -59,7 +58,6 @@ public class EnuMediaType {
         put(DEMARCHE_TERMINEE, new TypeReference<DemarcheTerminee>(){});
         put(DOCUMENT_ACCES, new TypeReference<DocumentAcces>(){});
         put(DOCUMENT, new TypeReference<DocumentUsager>(){});
-        put(DOCUMENT_RECEPTION_MODE, new TypeReference<ModeReceptionDocuments>(){});
         put(SEQUENCE_MESSAGES, new TypeReference<SequenceMessages>(){});
         put(SUGGESTION_ABANDON, new TypeReference<SuggestionAbandon>(){});
         put(SUGGESTION, new TypeReference<Suggestion>(){});
