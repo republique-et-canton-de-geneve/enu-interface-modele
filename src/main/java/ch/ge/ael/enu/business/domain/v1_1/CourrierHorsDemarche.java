@@ -53,6 +53,9 @@ public class CourrierHorsDemarche extends MessageENU {
     @Size(max = 64)
     public String idCourrier;
 
+    @Size(max = 256)
+    public String idSiMetier;
+
     public LocalDateTime dateEnvoi;
 
     public List<Notification> notifications;
