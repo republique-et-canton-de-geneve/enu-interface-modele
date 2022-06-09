@@ -30,6 +30,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Donnees contenues dans un message JSON d'ajout d'un document a une demarche existante.
@@ -60,7 +61,11 @@ public class DocumentUsager extends MessageENU {
     @Size(max = 50)
     public String mime;
 
+    @EqualsAndHashCode.Exclude
     public LocalDateTime dateEnvoi;
+
+    @EqualsAndHashCode.Exclude
+    public List<Notification> notifications;
 
     @NotNull
     public GedData ged;

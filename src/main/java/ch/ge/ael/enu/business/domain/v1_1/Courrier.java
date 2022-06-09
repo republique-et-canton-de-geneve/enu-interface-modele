@@ -45,6 +45,7 @@ public class Courrier extends MessageENU {
     public String idDemarcheSiMetier;
 
     @NotBlank
+    @EqualsAndHashCode.Exclude
     @Size(max = 50)
     public String libelleCourrier;
 
@@ -55,7 +56,11 @@ public class Courrier extends MessageENU {
     @Size(max = 20)
     public List<CourrierDocument> documents;
 
+    @EqualsAndHashCode.Exclude
     public LocalDateTime dateEnvoi;
+
+    @EqualsAndHashCode.Exclude
+    public List<Notification> notifications;
 
     /**
      * Champ cree par la mediation, ajoute' ici par simplicite.

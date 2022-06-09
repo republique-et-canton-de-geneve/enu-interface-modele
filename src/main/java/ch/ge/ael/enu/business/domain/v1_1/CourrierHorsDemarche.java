@@ -43,6 +43,7 @@ import java.util.List;
 public class CourrierHorsDemarche extends MessageENU {
 
     @NotBlank
+    @EqualsAndHashCode.Exclude
     @Size(max = 50)
     public String libelleCourrier;
 
@@ -56,8 +57,10 @@ public class CourrierHorsDemarche extends MessageENU {
     @Size(max = 256)
     public String idSiMetier;
 
+    @EqualsAndHashCode.Exclude
     public LocalDateTime dateEnvoi;
 
+    @EqualsAndHashCode.Exclude
     public List<Notification> notifications;
 
     /**
