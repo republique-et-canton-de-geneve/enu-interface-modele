@@ -46,14 +46,14 @@ public class Courrier extends MessageENU {
 
     @NotBlank
     @EqualsAndHashCode.Exclude
-    @Size(max = 50)
+    @Size(max = 250)
     public String libelleCourrier;
 
     @Size(max = 64)
     public String idCourrier;
 
     @NotEmpty
-    @Size(max = 20)
+    @Size(max = 200)
     public List<CourrierDocument> documents;
 
     @EqualsAndHashCode.Exclude

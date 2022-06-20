@@ -44,11 +44,11 @@ public class CourrierHorsDemarche extends MessageENU {
 
     @NotBlank
     @EqualsAndHashCode.Exclude
-    @Size(max = 50)
+    @Size(max = 250)
     public String libelleCourrier;
 
     @NotEmpty
-    @Size(max = 20)
+    @Size(max = 200)
     public List<CourrierDocument> documents;
 
     @Size(max = 64)

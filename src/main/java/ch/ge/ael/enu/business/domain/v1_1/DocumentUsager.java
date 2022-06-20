@@ -50,7 +50,7 @@ public class DocumentUsager extends MessageENU {
     public DocumentType typeDocument;
 
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 250)
     public String libelleDocument;
 
     @NotBlank
