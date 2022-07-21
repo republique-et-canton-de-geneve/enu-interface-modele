@@ -7,11 +7,10 @@ import lombok.ToString;
 import lombok.extern.jackson.Jacksonized;
 
 @Data
-@Jacksonized @Builder
+@Jacksonized
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(callSuper = true, doNotUseGetters = true)
-public class HealthCheck {
-    private Boolean deep;
-    private Boolean forceKO;
-    private Boolean sendACK;
+public class Acknowledge {
+    private String message = "OK";
 }

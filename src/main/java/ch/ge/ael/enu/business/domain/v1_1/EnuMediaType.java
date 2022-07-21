@@ -27,6 +27,7 @@ public class EnuMediaType {
 
     public static final String VERSION = Version.V1_1;
 
+    public static final String ACKNOWLEDGE = "application/ack-v"+VERSION+"+json";
     public static final String BROUILLON_ABANDON = "application/brouillon-abandon-v"+VERSION+"+json";
     public static final String BROUILLON_DEMARCHE = "application/brouillon-de-demarche-v"+VERSION+"+json";
     public static final String COURRIER = "application/courrier-v"+VERSION+"+json";
@@ -47,6 +48,7 @@ public class EnuMediaType {
     public static final String DEMANDE_LISTE_PREFERENCE = "application/demande-liste-preference-v"+VERSION+"+json";
 
     public static final HashMap<String, TypeReference<?>> typeReferenceMap = new HashMap<String, TypeReference<?>>() {{
+        put(ACKNOWLEDGE, new TypeReference<Acknowledge>(){});
         put(BROUILLON_ABANDON, new TypeReference<BrouillonAbandon>(){});
         put(BROUILLON_DEMARCHE, new TypeReference<BrouillonDemarche>(){});
         put(COURRIER, new TypeReference<Courrier>(){});
