@@ -4,26 +4,38 @@ variables:
   GIT_SSL_NO_VERIFY: "true"
   # config Maven
   MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
-  MAVEN_OPTS: "-Dmaven.repo.local=/cache/.m2/repository"
+#  MAVEN_OPTS: "-Dmaven.repo.local=/cache/.m2/repository"
+  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   # config SonarQube
-  SONAR_MAVEN_GOAL: org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar
+  SONAR_MAVEN_GOAL: org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar
   SONAR_USER_HOME: /cache/sonar
+  # config Nexus IQ server
+  CLM_MAVEN_GOAL: com.sonatype.clm:clm-maven-plugin:2.12.1:evaluate
+  CLM_SERVER_ID: clm_server
+  CLM_APPLICATION_ID: enu-mediation
 
 default:
-  image:
-    name: $DOCKER_URL/ch/ge/cti/build/docker-npm-maven:1.1.1
   tags:
     - 'for:application-project'
     - 'host:restricted-container'
     - 'net:soca-dev'
+  image: docker-all.devops.etat-ge.ch/ch/ge/cti/build/alpine-maven-git-node:14
+
+cache:
+  untracked: false
+  key:
+    files:
+      - pom.xml
+  paths:
+    - .m2/repository
 
 stages:
-  - build
+  - deploy
   - release
 
 # Le deploiement des snapshots se fait sur le depot Nexus de l'Etat, afin que le JAR soit rapidement disponible.
-build_and_sonar:
-  stage: build
+snapshot:
+  stage: deploy
   script:
     - mvn $MAVEN_CLI_OPTS clean deploy $SONAR_MAVEN_GOAL
       -Dsonar.host.url=$SonarQube_URL -Dsonar.gitlab.project_id=$CI_PROJECT_PATH -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA
