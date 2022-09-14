@@ -31,7 +31,7 @@
     <properties>
         <java.version>8</java.version>
         <version.lombok>1.18.20</version.lombok>
-        <spring-boot.version>2.6.5</spring-boot.version>
+        <spring-boot.version>2.7.3</spring-boot.version>
         <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
