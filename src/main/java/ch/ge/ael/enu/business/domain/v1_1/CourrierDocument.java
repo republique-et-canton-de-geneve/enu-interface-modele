@@ -18,6 +18,7 @@
  */
 package ch.ge.ael.enu.business.domain.v1_1;
 
+import ch.ge.ael.enu.business.domain.validation.ValidCourrierDocument;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.ToString;
@@ -34,6 +35,7 @@ import javax.validation.constraints.NotNull;
 @Jacksonized @SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(doNotUseGetters = true)
+@ValidCourrierDocument
 public class CourrierDocument {
 
     @NotBlank

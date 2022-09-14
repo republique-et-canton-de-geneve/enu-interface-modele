@@ -6,11 +6,11 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class DocumentUsagerValidator implements
-        ConstraintValidator<ValidDocument, DocumentUsager> {
+        ConstraintValidator<ValidDocumentUsager, DocumentUsager> {
     private static final String pipe = "|";
 
     @Override
-    public void initialize(ValidDocument constraintAnnotation) {
+    public void initialize(ValidDocumentUsager constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 

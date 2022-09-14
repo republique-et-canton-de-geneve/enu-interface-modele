@@ -18,7 +18,7 @@
  */
 package ch.ge.ael.enu.business.domain.v1_1;
 
-import ch.ge.ael.enu.business.domain.validation.ValidDocument;
+import ch.ge.ael.enu.business.domain.validation.ValidDocumentUsager;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -42,7 +42,7 @@ import java.util.List;
 @Slf4j
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(callSuper = true, doNotUseGetters = true)
-@ValidDocument
+@ValidDocumentUsager
 public class DocumentUsager extends MessageENU {
 
     @NotBlank
