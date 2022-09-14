@@ -29,8 +29,8 @@
     </developers>
 
     <properties>
-        <java.version>8</java.version>
-        <version.lombok>1.18.20</version.lombok>
+        <java.version>11</java.version>
+        <version.lombok>1.18.24</version.lombok>
         <spring-boot.version>2.7.3</spring-boot.version>
         <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,11 +38,11 @@
 
     <scm>
         <!--suppress UnresolvedMavenProperty -->
-        <connection>scm:git:${env.GITLAB_URL}/enu-interface-modele.git</connection>
+        <connection>scm:git:${env.GITLAB_PROJECT_BASE_URL}/enu-interface-modele.git</connection>
         <!--suppress UnresolvedMavenProperty -->
-        <developerConnection>scm:git:${env.GITLAB_URL}/enu-interface-modele.git</developerConnection>
+        <developerConnection>scm:git:${env.GITLAB_PROJECT_BASE_URL}/enu-interface-modele.git</developerConnection>
         <!--suppress UnresolvedMavenProperty -->
-        <url>${env.GITLAB_URL}/enu-interface-modele.git</url>
+        <url>${env.GITLAB_PROJECT_BASE_URL}/enu-interface-modele.git</url>
         <tag>HEAD</tag>
     </scm>
 
