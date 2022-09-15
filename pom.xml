@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <parent>
+        <groupId>ch.ge.ael.enu</groupId>
+        <artifactId>maven-parent</artifactId>
+        <version>1.1</version>
+    </parent>
     <!-- le groupId doit commencer par "ch.ge.etat" afin que le JAR puisse etre pousse sur Maven Central -->
-    <groupId>ch.ge.ael.enu</groupId>
     <artifactId>enu-interface-modele</artifactId>
     <version>1.1.12-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -19,64 +22,15 @@
         </license>
     </licenses>
 
-    <developers>
-        <developer>
-            <name>EdG</name>
-            <email>opensource@etat.ge.ch</email>
-            <organization>Etat de Geneve, Switzerland</organization>
-            <organizationUrl>https://ge.ch</organizationUrl>
-        </developer>
-    </developers>
-
-    <properties>
-        <java.version>11</java.version>
-        <version.lombok>1.18.24</version.lombok>
-        <spring-boot.version>2.7.3</spring-boot.version>
-        <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <scm>
         <!--suppress UnresolvedMavenProperty -->
-        <connection>scm:git:${env.GITLAB_PROJECT_BASE_URL}/enu-interface-modele.git</connection>
+        <connection>scm:git:${scm.baseurl}/enu-interface-modele.git</connection>
         <!--suppress UnresolvedMavenProperty -->
-        <developerConnection>scm:git:${env.GITLAB_PROJECT_BASE_URL}/enu-interface-modele.git</developerConnection>
+        <developerConnection>scm:git:${scm.baseurl}/enu-interface-modele.git</developerConnection>
         <!--suppress UnresolvedMavenProperty -->
-        <url>${env.GITLAB_PROJECT_BASE_URL}/enu-interface-modele.git</url>
+        <url>${scm.baseurl}/enu-interface-modele.git</url>
         <tag>HEAD</tag>
     </scm>
-
-    <distributionManagement>
-        <repository>
-            <id>internal.project.release</id>
-            <url>${maven2Repository_projet}/project_release</url>
-        </repository>
-        <snapshotRepository>
-            <id>internal.project.snapshot</id>
-            <url>${maven2Repository_projet}/project_snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <dependencyManagement>
-        <dependencies>
-            <!-- Spring Boot BOM -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- Lombok BOM -->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${version.lombok}</version>
-                <scope>provided</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <!-- Spring Boot deps -->
@@ -116,25 +70,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
-            </plugin>
-        </plugins>
-    </build>
 
     <profiles>
         <profile>
