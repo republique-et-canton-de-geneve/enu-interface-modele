@@ -38,10 +38,8 @@ import javax.validation.constraints.NotNull;
 @ValidCourrierDocument
 public class CourrierDocument {
 
-    @NotBlank
     public String libelleDocument;
 
-    @NotBlank
     public String idDocumentSiMetier;
 
     @NotBlank

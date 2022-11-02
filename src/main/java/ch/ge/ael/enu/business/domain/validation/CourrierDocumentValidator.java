@@ -16,8 +16,8 @@ public class CourrierDocumentValidator implements
 
     @Override
     public boolean isValid(CourrierDocument courrierDocument, ConstraintValidatorContext context) {
-        return !courrierDocument.idDocumentSiMetier.isEmpty() &&
-                !courrierDocument.libelleDocument.isEmpty() &&
+        return courrierDocument.idDocumentSiMetier != null && !courrierDocument.idDocumentSiMetier.isEmpty() &&
+                courrierDocument.libelleDocument != null && !courrierDocument.libelleDocument.isEmpty() &&
                 !courrierDocument.idDocumentSiMetier.contains(pipe) &&
                 !courrierDocument.libelleDocument.contains(pipe);
     }

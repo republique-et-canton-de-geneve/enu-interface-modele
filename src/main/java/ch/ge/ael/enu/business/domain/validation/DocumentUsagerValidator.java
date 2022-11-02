@@ -16,9 +16,8 @@ public class DocumentUsagerValidator implements
 
     @Override
     public boolean isValid(DocumentUsager documentUsager, ConstraintValidatorContext context) {
-        return !documentUsager.idDocumentSiMetier.isEmpty() &&
-                !documentUsager.libelleDocument.isEmpty() &&
-                !documentUsager.idDocumentSiMetier.contains(pipe) &&
+        return documentUsager.idDocumentSiMetier != null && !documentUsager.idDocumentSiMetier.isEmpty() && !documentUsager.idDocumentSiMetier.contains(pipe)
+                && documentUsager.libelleDocument != null && !documentUsager.libelleDocument.isEmpty() &&
                 !documentUsager.libelleDocument.contains(pipe);
     }
 }

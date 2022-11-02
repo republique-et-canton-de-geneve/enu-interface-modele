@@ -51,11 +51,9 @@ public class DocumentUsager extends MessageENU {
     @NotNull
     public DocumentType typeDocument;
 
-    @NotBlank
     @Size(max = 250)
     public String libelleDocument;
 
-    @NotBlank
     @Size(max = 50)
     public String idDocumentSiMetier;
 
