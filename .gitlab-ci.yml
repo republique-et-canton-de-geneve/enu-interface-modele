@@ -21,9 +21,9 @@ variables:
 
 default:
   tags:
-    - 'for:application-project'
-    - 'host:restricted-container'
-    - 'net:soca4-dev'
+    - for:application-project
+    - host:restricted-container
+    - net:gold-dev
   image: docker-all.devops.etat-ge.ch/ch/ge/cti/build/alpine-maven-git-node:15
 
 cache:
