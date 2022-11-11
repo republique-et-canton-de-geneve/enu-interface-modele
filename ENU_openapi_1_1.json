@@ -1,0 +1,1204 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Espace Numérique Usager - OpenAPI",
+    "description": "Modèle API de l'ENU: les exemples fournissent les media types utilisés dans la messagerie RabbitMQ. La documentation ci-dessous décrit chaque message individuellement.\n\nLes messages d'erreur passés dans les headers sont décrits ici: [wiki Etat GE](https://ge.ch/wikiext/display/BDCTRANSEDEM/Nomenclature+des+messages+d%27erreur).\n",
+    "version": "1.1"
+  },
+  "externalDocs": {
+    "description": "Documentation du fonctionnement global ENU - RabbitMQ - SI Métier.",
+    "url": "https://git.devops.etat-ge.ch/gitlab/ACCES_RESTREINT/3417_espace_numerique_usager/enu-mediation/-/blob/master/docs/messages.md"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/BrouillonAbandon": {
+      "get": {
+        "tags": [
+          "BrouillonAbandon"
+        ],
+        "summary": "Donne un exemple du modèle BrouillonAbandon",
+        "description": "# Abandon de brouillon de démarche:\n\nCas d'usage : l'usager a entamé et enregistré une ou plusieurs démarches sans les soumettre; il s'agit d'un **brouillon**. Ce message, envoyé de l'ENU au SI Métier, est utilisé lorsque l'usager décide d'**effacer un brouillon**. \n\nPoint d'attention: dans ce cas, le brouillon est détruit, de manière définitive; en effet,pour des raisons légales aucun historique des brouillons n'est conservé.\n",
+        "operationId": "getBrouillonAbandon",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/brouillon-abandon-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrouillonAbandon"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/BrouillonDemarche": {
+      "get": {
+        "tags": [
+          "BrouillonDemarche"
+        ],
+        "summary": "Donne un exemple du modèle BrouillonDemarche",
+        "description": "# Enregistrer un brouillon de démarche:\n\nCas d'usage : l'usager a entamé et enregistré une ou plusieurs démarches sans les soumettre; il s'agit d'un **brouillon**. Ce message, envoyé du SI Métier à l'ENU, est utilisé lorsque le **brouillon est enregistré**. \n\nRemarque: dans certains cas, ce message est envoyé par le formulaire en ligne et non par le SI Métier. Le résultat est le même. Par contre, les identifiants de démarches doivent être synchronisés pour s'assurer qu'une fois envoyé le brouillon disparait alors que la démarche prend sa place.\n",
+        "operationId": "getBrouillonDemarche",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/brouillon-de-demarche-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrouillonDemarche"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ChangementPreference": {
+      "get": {
+        "tags": [
+          "ChangementPreference"
+        ],
+        "summary": "Donne un exemple du modèle ChangementPreference",
+        "description": "# Notification de changement de préférences pour un compte:\n\nCas d'usage : l'usager **change ses préférences dans l'ENU**, qui doit notifier les SI Métier de ces changements. Ce message, envoyé du de l'ENU aux SI Métiers, est utilisé chaque fois que l'usager effectue un changement. \n\nTypes de préférences:\n- Numérique ou papier: choix de la correspondance.\n- Email ou email+SMS: choix de la notification (disponible uniquement si en numérique).\n",
+        "operationId": "getChangementPreference",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/changement-preference-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangementPreference"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Courrier": {
+      "get": {
+        "tags": [
+          "Courrier"
+        ],
+        "summary": "Donne un exemple du modèle Courrier",
+        "description": "# Envoi d'un courrier par l'administration à un usager:\n\nIl s'agit ici de créer un courrier, c'est-à-dire **l'équivalent numérique d'un envoi postal à l'usager**. Ce format est le format standard d'envoi d'un courrier (à préférer); les autres cas sont des variantes. L'envoi se fait du SI Métier à l'ENU.\n\nLe courrier:\n- est constitué d'un ou plusieurs documents, ainsi que d'un en-tête.\n- porte sur une démarche qui a été précédemment créée.\n- son envoi se fait à travers la GED (le document n'est pas joint, seule la référence est passée). Voir le chapitre consacré à la GED, au bas de cette page.\n",
+        "operationId": "getCourrier",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/courrier-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Courrier"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/CourrierHorsDemarche": {
+      "get": {
+        "tags": [
+          "CourrierHorsDemarche"
+        ],
+        "summary": "Donne un exemple du modèle CourrierHorsDemarche",
+        "description": "# Envoi d'un courrier hors démarche:\n\nMessage similaire au **Courrier**.\n\nIl s'agit d'une variante dans laquelle le courrier n'est pas rattaché à une démarche.\nMerci de n'utiliser ce message qu'en cas d'exception. En effet, en utilisant un courrier hors démarche, l'usager ne pourra pas le filtrer par démarche.\n\nNB: une démarche est généralement initiée par l'usager; mais elle peut aussi être initiée par l'administration, par exemple pour les poursuites, les impôts ou des factures. \n",
+        "operationId": "getCourrierHorsDemarche",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/courrier-hors-demarche-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourrierHorsDemarche"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DemandeListePreference": {
+      "get": {
+        "tags": [
+          "DemandeListePreference"
+        ],
+        "summary": "Donne un exemple du modèle DemandeListePreference",
+        "description": "# Demande la liste complète des préférences de l'ENU, envoyées pour une prestation donnée:\n\nCas d'usage : un nouveau SI Métier se connecte sur l'ENU, et a besoin de récupérer l'entièreté des préférences des usagers. \n\nTypes de préférences:\n- Numérique ou papier: choix de la correspondance.\n- Email ou email+SMS: choix de la notification (disponible uniquement si en numérique).\n",
+        "operationId": "getDemandeListePreference",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              }
+            },
+            "content": {
+              "application/demande-liste-preference-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemandeListePreference"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DemarcheAbandonnee": {
+      "get": {
+        "tags": [
+          "DemarcheAbandonnee"
+        ],
+        "summary": "Donne un exemple du modèle DemarcheAbandonnee",
+        "description": "# Abandon d'une démarche:\n\nCas d'usage: une démarche est abandonnée; par exemple si l'usager téléphone à l'administration, qui change le statut de la démarche en \"abandonné\".\n\nSystèmes: SI Métier -> ENU. En effet, il n'y a pas de méchanisme dans l'ENU pour demander à abandonner une démarche.\n",
+        "operationId": "getDemarcheAbandonnee",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/demarche-abandonnee-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemarcheAbandonnee"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DemarcheActionRequise": {
+      "get": {
+        "tags": [
+          "DemarcheActionRequise"
+        ],
+        "summary": "Donne un exemple du modèle DemarcheActionRequise",
+        "description": "# Passage du statut d'une démarche en \"action requise\":\n\nCas d'usage: une démarche a été précédement envoyée par l'usager. **L'administration se rend compte que des éléments manquent (par exemple des pièces jointes, ou un complément d'information) et demande à l'usager de compléter sa demande.**\n\nSystèmes: le SI Métier envoye un message à l'ENU. Dans l'espace e-démarche, lorsqu'une action est requise, une URL est affichée, permettant à l'usager de compléter sa démarche. La partie \"compléter la démarche\" se fait côté SI Métier (ou JWAY, dans le cadre des formulaires standards). \n",
+        "operationId": "getDemarcheActionRequise",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/demarche-action-requise-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemarcheActionRequise"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DemarcheDeposee": {
+      "get": {
+        "tags": [
+          "DemarcheDeposee"
+        ],
+        "summary": "Donne un exemple du modèle DemarcheDeposee",
+        "description": "# Dépôt d'une démarche:\n\nCas d'usage: l'usager vient d'envoyer une demande à l'administration, qui ne l'a pas encore traitée. **La démarche est nouvelle** et va apparaître comme \"déposée\" dans son espace e-démarches.\n\nSystèmes: le statut de la e-démarche est envoyée au SI Métier.\n\nImportant: merci d'envoyer la démarche déposée à l'espace e-démarche dès que le SI Métier reçoit l'information. En effet, une fois que l'usager a envoyé sa demande (via une e-démarche), celui-ci s'attend à la trouver immédiatement dans son espace e-démarches.\n",
+        "operationId": "getDemarcheDeposee",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/demarche-deposee-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemarcheDeposee"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DemarcheEnTraitement": {
+      "get": {
+        "tags": [
+          "DemarcheEnTraitement"
+        ],
+        "summary": "Donne un exemple du modèle DemarcheEnTraitement",
+        "description": "# Passage du statut d'une démarche en \"en traitement\":\n\nCas d'usage: une démarche a été précédement envoyée par l'usager. **Une démarche passe à \"en traitement\" lorsqu'un collaborateur de l'Etat (ou un système) commence à traiter la demande de l'usager**.\n\nSystèmes: le SI Métier envoye un message à l'ENU.\n",
+        "operationId": "getDemarcheEnTraitement",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/demarche-en-traitement-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemarcheEnTraitement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DemarcheTerminee": {
+      "get": {
+        "tags": [
+          "DemarcheTerminee"
+        ],
+        "summary": "Donne un exemple du modèle DemarcheTerminee",
+        "description": "# Passage du statut d'une démarche en \"terminée\":\n\nCas d'usage: une démarche existe dans l'espace numérique de l'usager (probablement dans le statut \"en cours\"). Celle-ci a été traitée par l'administration, qui lui a déjà répondu (probablement à travers un courrier). **La démarche est donc terminée** et va apparaitre dans les archives (\"démarches passées\") dans l'espace e-démarches de l'usager.\n\nSystèmes: le statut de la e-démarche est envoyée du SI Métier vers l'ENU. Une fois la démarche **terminée**, elle est figée; il n'y a plus d'autres actions sur cette démarche.\n",
+        "operationId": "getDemarcheTerminee",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/demarche-terminee-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DemarcheTerminee"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DocumentUsager": {
+      "get": {
+        "tags": [
+          "DocumentUsager"
+        ],
+        "summary": "Donne un exemple du modèle DocumentUsager",
+        "description": "# Envoi d'un document en pièce jointe à une démarche:\n\nCas d'usage: l'usager peut lire le récapitulatif de sa demande et voir ses pièces jointes dans l'ENU. \n\nDétail: documentUsager regroupe à la fois le récapitulatif de la demande de l'usager (extrait du formulaire) et les pièces jointes (par exemple un scan de la pièce d'identité). Ces données sont envoyées au SI Métier qui les fait suivre à l'usager via l'ENU. Cela permet à l'usager de relire sa demande et les pipces jointes.\n\nSystèmes: formulaire -> SI Métier -> ENU.\n\nNB: contrairement aux courriers de l'administration, une pièce jointe envoyée par l'usager peut avoir différents formats - image, Word, Excel et aussi PDF.\n",
+        "operationId": "getDocumentUsager",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/document-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentUsager"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/DocumentAccess": {
+      "get": {
+        "tags": [
+          "DocumentAccess"
+        ],
+        "summary": "Donne un exemple du modèle DocumentAccess",
+        "description": "# Notification d'accès par un compte à un document:\n\nCas d'usage: lorsque le courrier de l'administration offre un droit de recours, celui-ci est limité dans le temps (généralement 30 jours après ouverture du document). \nVia ce message, l'ENU notifie le SI Métier lorsque c'est le cas.\n\nSystème: ENU -> SI Métier.\n",
+        "operationId": "getDocumentAccess",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/document-acces-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentAcces"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/HealthCheck": {
+      "get": {
+        "tags": [
+          "HealthCheck"
+        ],
+        "summary": "Donne un exemple du modèle HealthCheck",
+        "description": "# Envoi d'un message de test \"Health Check\" pour les sondes automatiques:\n\nCe message permet une vérification/sonde technique.\n",
+        "operationId": "getHealthCheck",
+        "responses": {
+          "default": {
+            "description": "**deep**: *true* si on veut un \"deep health check\" qui vérifie tous les sous-systèmes de l'ENU. *false* ne vérifie que la réception des messages.\n\n**forceKO**: renvoie forcément une exception sur la DLQ.\n\n**sendACK**: renvoie une réponse sur la Q standard, de type Acknowledge (par ex. {message=\"OK\"}), seulement après exécution complète du health check. S'il échoue, message d'exception sur la DLQ.\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              }
+            },
+            "content": {
+              "application/health-check-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthCheck"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SequenceMessages": {
+      "get": {
+        "tags": [
+          "SequenceMessages"
+        ],
+        "summary": "Donne un exemple du modèle SequenceMessages",
+        "description": "# Permet de grouper des messages dans une séquence ordonnée:\n\nMessage technique. Permet de grouper un ensemble de messages ensemble.\n",
+        "operationId": "getSequenceMessages",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/sequence-enu-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SequenceMessages"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Suggestion": {
+      "get": {
+        "tags": [
+          "Suggestion"
+        ],
+        "summary": "Donne un exemple du modèle Suggestion",
+        "description": "# Création d'une suggestion:\n\nIci insérer une description détaillée.\n",
+        "operationId": "getSuggestion",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/suggestion-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Suggestion"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SuggestionAbandon": {
+      "get": {
+        "tags": [
+          "SuggestionAbandon"
+        ],
+        "summary": "Donne un exemple du modèle SuggestionAbandon",
+        "description": "# Abandon d'une suggestion:\n\nCas d'usage: l'administration peut suggérer à l'usager d'entamer une prestation.\n1) L'usager peut refuser la suggestion dans l'ENU.\n2) L'administration peut retirer la suggestion. \n\nSystèmes:\n- Cas 1: ENU -> SI Métier.\n- Cas 2: SI Métier -> ENU.\n",
+        "operationId": "getSuggestionAbandon",
+        "responses": {
+          "default": {
+            "description": "Ici on peut donner plus de détails sur les champs du modèle, toujours en MarkDown\n",
+            "headers": {
+              "amqp_correlationId": {
+                "$ref": "#/components/headers/amqp_correlationId"
+              },
+              "identifiantType": {
+                "$ref": "#/components/headers/identifiantType"
+              }
+            },
+            "content": {
+              "application/suggestion-abandon-v1.1+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuggestionAbandon"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DocumentType": {
+        "type": "string",
+        "example": "RECAPITULATIF",
+        "enum": [
+          "JUSTIFICATIF",
+          "RECAPITULATIF"
+        ]
+      },
+      "ActionType": {
+        "type": "string",
+        "example": "REPONSE_DEMANDE_RENSEIGNEMENT",
+        "enum": [
+          "ENRICHISSEMENT_DE_DEMANDE",
+          "REPONSE_DEMANDE_RENSEIGNEMENT"
+        ]
+      },
+      "PreferenceType": {
+        "type": "string",
+        "example": "NUMERIQUE",
+        "enum": [
+          "NUMERIQUE",
+          "PAPIER"
+        ]
+      },
+      "Acknowledge": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "OK"
+          }
+        }
+      },
+      "BrouillonAbandon": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "idDemarcheSiMetier"
+            ],
+            "type": "object",
+            "properties": {
+              "idDemarcheSiMetier": {
+                "type": "string",
+                "example": "ADCD1234-XYZ"
+              }
+            }
+          }
+        ]
+      },
+      "BrouillonDemarche": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "idDemarcheSiMetier",
+              "urlAction"
+            ],
+            "type": "object",
+            "properties": {
+              "dateEcheanceAction": {
+                "type": "string",
+                "format": "date"
+              },
+              "idDemarcheSiMetier": {
+                "type": "string",
+                "example": "ADCD1234-XYZ"
+              },
+              "urlAction": {
+                "type": "string",
+                "format": "url",
+                "example": "https://www.ge.ch"
+              }
+            }
+          }
+        ]
+      },
+      "ChangementPreference": {
+        "required": [
+          "identifiant"
+        ],
+        "type": "object",
+        "properties": {
+          "identifiant": {
+            "type": "string",
+            "example": "R-1234"
+          },
+          "preferenceCourrierEmail": {
+            "type": "boolean",
+            "example": true
+          },
+          "preferenceCourrierSMS": {
+            "type": "boolean",
+            "example": false
+          },
+          "preferenceDemarcheEmail": {
+            "type": "boolean",
+            "example": true
+          },
+          "preferenceDemarcheSMS": {
+            "type": "boolean",
+            "example": false
+          },
+          "preferenceDepotDemarcheEmail": {
+            "type": "boolean",
+            "example": true
+          },
+          "preferenceDepotDemarcheSMS": {
+            "type": "boolean",
+            "example": false
+          },
+          "preferenceTacheEmail": {
+            "type": "boolean",
+            "example": true
+          },
+          "preferenceTacheSMS": {
+            "type": "boolean",
+            "example": false
+          },
+          "preferenceType": {
+            "$ref": "#/components/schemas/PreferenceType"
+          }
+        }
+      },
+      "Courrier": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "documents",
+              "libelleCourrier"
+            ],
+            "type": "object",
+            "properties": {
+              "dateEnvoi": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "documents": {
+                "maxItems": 20,
+                "minItems": 0,
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CourrierDocument"
+                }
+              },
+              "idCourrier": {
+                "maxLength": 64,
+                "minLength": 0,
+                "type": "string",
+                "example": "C-X1234"
+              },
+              "idDemarcheSiMetier": {
+                "type": "string",
+                "example": "ADCD1234-XYZ"
+              },
+              "libelleCourrier": {
+                "maxLength": 50,
+                "minLength": 0,
+                "type": "string",
+                "example": "Libellé du courrier"
+              }
+            }
+          }
+        ]
+      },
+      "CourrierDocument": {
+        "required": [
+          "ged",
+          "idDocumentSiMetier",
+          "libelleDocument",
+          "mime"
+        ],
+        "type": "object",
+        "properties": {
+          "ged": {
+            "$ref": "#/components/schemas/GedData"
+          },
+          "idDocumentSiMetier": {
+            "type": "string",
+            "example": "REF-XYZ123"
+          },
+          "libelleDocument": {
+            "type": "string",
+            "example": "Libellé du document"
+          },
+          "mime": {
+            "type": "string",
+            "example": "application/pdf"
+          }
+        }
+      },
+      "CourrierHorsDemarche": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "documents",
+              "libelleCourrier"
+            ],
+            "type": "object",
+            "properties": {
+              "dateEnvoi": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "documents": {
+                "maxItems": 20,
+                "minItems": 0,
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CourrierDocument"
+                }
+              },
+              "idCourrier": {
+                "maxLength": 64,
+                "minLength": 0,
+                "type": "string",
+                "example": "C-X1234"
+              },
+              "idSiMetier": {
+                "maxLength": 256,
+                "minLength": 0,
+                "type": "string",
+                "example": "EF908745987DE234"
+              },
+              "libelleCourrier": {
+                "maxLength": 50,
+                "minLength": 0,
+                "type": "string",
+                "example": "Libellé du courrier hors démarche"
+              },
+              "notifications": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "DemandeListePreference": {
+        "required": [
+          "dateDemande",
+          "idPrestation"
+        ],
+        "type": "object",
+        "properties": {
+          "dateDemande": {
+            "type": "string",
+            "format": "date"
+          },
+          "idPrestation": {
+            "type": "string",
+            "example": "ID.PRESTATIONX"
+          }
+        }
+      },
+      "DemarcheAbandonnee": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "idDemarcheSiMetier"
+            ],
+            "type": "object",
+            "properties": {
+              "dateAbandon": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "idDemarcheSiMetier": {
+                "type": "string",
+                "example": "ADCD1234-XYZ"
+              },
+              "urlRenouvellement": {
+                "type": "string",
+                "format": "url",
+                "example": "https://www.ge.ch"
+              }
+            }
+          }
+        ]
+      },
+      "DemarcheActionRequise": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "idDemarcheSiMetier",
+              "libelleAction",
+              "urlAction"
+            ],
+            "type": "object",
+            "properties": {
+              "dateActionRequise": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "dateEcheanceAction": {
+                "type": "string",
+                "format": "date"
+              },
+              "idDemarcheSiMetier": {
+                "type": "string",
+                "example": "ADCD1234-XYZ"
+              },
+              "libelleAction": {
+                "maxLength": 250,
+                "minLength": 0,
+                "type": "string",
+                "example": "Libellé de l'action"
+              },
+              "typeAction": {
+                "$ref": "#/components/schemas/ActionType"
+              },
+              "urlAction": {
+                "type": "string",
+                "format": "url",
+                "example": "https://www.ge.ch"
+              }
+            }
+          }
+        ]
+      },
+      "DemarcheDeposee": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "idDemarcheSiMetier"
+            ],
+            "type": "object",
+            "properties": {
+              "dateDepot": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "idDemarcheSiMetier": {
+                "type": "string",
+                "example": "ADCD1234-XYZ"
+              }
+            }
+          }
+        ]
+      },
+      "DemarcheEnTraitement": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "idDemarcheSiMetier"
+            ],
+            "type": "object",
+            "properties": {
+              "dateTraitement": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "idDemarcheSiMetier": {
+                "type": "string",
+                "example": "ADCD1234-XYZ"
+              }
+            }
+          }
+        ]
+      },
+      "DemarcheTerminee": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "idDemarcheSiMetier"
+            ],
+            "type": "object",
+            "properties": {
+              "dateCloture": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "idDemarcheSiMetier": {
+                "type": "string",
+                "example": "ADCD1234-XYZ"
+              },
+              "urlRenouvellement": {
+                "type": "string",
+                "format": "url",
+                "example": "https://www.ge.ch"
+              }
+            }
+          }
+        ]
+      },
+      "DocumentAcces": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "dateConsultation",
+              "idDocumentSiMetier"
+            ],
+            "type": "object",
+            "properties": {
+              "dateConsultation": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "idDocumentSiMetier": {
+                "maxLength": 50,
+                "minLength": 0,
+                "type": "string",
+                "example": "REF-XYZ123"
+              }
+            }
+          }
+        ]
+      },
+      "DocumentUsager": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "ged",
+              "idDemarcheSiMetier",
+              "idDocumentSiMetier",
+              "libelleDocument",
+              "mime",
+              "typeDocument"
+            ],
+            "type": "object",
+            "properties": {
+              "dateEnvoi": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "ged": {
+                "$ref": "#/components/schemas/GedData"
+              },
+              "idDemarcheSiMetier": {
+                "type": "string",
+                "example": "XYZ1234-6573"
+              },
+              "idDocumentSiMetier": {
+                "maxLength": 50,
+                "minLength": 0,
+                "type": "string",
+                "example": "REF-XYZ123"
+              },
+              "libelleDocument": {
+                "maxLength": 50,
+                "minLength": 0,
+                "type": "string",
+                "example": "Libellé du document"
+              },
+              "mime": {
+                "maxLength": 50,
+                "minLength": 0,
+                "type": "string",
+                "example": "application/pdf"
+              },
+              "typeDocument": {
+                "$ref": "#/components/schemas/DocumentType"
+              }
+            }
+          }
+        ]
+      },
+      "GedData": {
+        "required": [
+          "algorithmeHash",
+          "fournisseur",
+          "hash",
+          "idDocument",
+          "version"
+        ],
+        "type": "object",
+        "properties": {
+          "algorithmeHash": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "example": "SHA-256"
+          },
+          "cleArchivage": {
+            "maxLength": 64,
+            "minLength": 0,
+            "type": "string",
+            "example": "C4"
+          },
+          "fournisseur": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "example": "DOCUBASE-1234"
+          },
+          "hash": {
+            "maxLength": 4096,
+            "minLength": 0,
+            "type": "string",
+            "format": "byte",
+            "example": "VTNkaFoyZGxjaUJ5YjJOcmN3PT0="
+          },
+          "idDocument": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string",
+            "example": "1234-ABCD-5678-EFGH"
+          },
+          "version": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "example": "1.0"
+          }
+        }
+      },
+      "HealthCheck": {
+        "type": "object",
+        "properties": {
+          "deep": {
+            "type": "boolean",
+            "example": true
+          },
+          "forceKO": {
+            "type": "boolean",
+            "example": false
+          },
+          "sendACK": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "MessageENU": {
+        "required": [
+          "idPrestation",
+          "identifiant"
+        ],
+        "type": "object",
+        "properties": {
+          "idPrestation": {
+            "type": "string",
+            "example": "ID.PRESTATIONX"
+          },
+          "identifiant": {
+            "type": "string",
+            "example": "R-1234"
+          }
+        }
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "bill.gates@microsoft.com"
+          },
+          "numeroSMS": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "example": "+417812345678"
+          }
+        }
+      },
+      "SequenceMessages": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MessageENU"
+            }
+          }
+        }
+      },
+      "Suggestion": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          },
+          {
+            "required": [
+              "descriptionAction",
+              "libelleAction",
+              "urlAction",
+              "urlPrestation"
+            ],
+            "type": "object",
+            "properties": {
+              "dateEcheanceAction": {
+                "type": "string",
+                "format": "date"
+              },
+              "descriptionAction": {
+                "maxLength": 150,
+                "minLength": 0,
+                "type": "string",
+                "example": "Texte descriptif (long) de l'action"
+              },
+              "libelleAction": {
+                "maxLength": 25,
+                "minLength": 0,
+                "type": "string",
+                "example": "Libellé de l'action"
+              },
+              "urlAction": {
+                "type": "string",
+                "format": "url",
+                "example": "https://www.ge.ch"
+              },
+              "urlPrestation": {
+                "type": "string",
+                "format": "url",
+                "example": "https://www.tdg.ch"
+              }
+            }
+          }
+        ]
+      },
+      "SuggestionAbandon": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/MessageENU"
+          }
+        ]
+      }
+    },
+    "headers": {
+      "amqp_correlationId": {
+        "description": "ID de corrélation du message.",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string"
+        },
+        "example": "1234-ABCD-5678-EFGH"
+      },
+      "identifiantType": {
+        "description": "Type d'identifiant de compte (CLE_METIER ou CGE).",
+        "required": true,
+        "style": "simple",
+        "explode": false,
+        "schema": {
+          "type": "string",
+          "enum": [
+            "CLE_METIER",
+            "CGE"
+          ]
+        },
+        "example": "CLE_METIER"
+      }
+    }
+  }
+}
