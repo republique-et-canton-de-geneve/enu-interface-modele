@@ -46,7 +46,7 @@ public class Courrier extends MessageENU {
 
     @NotBlank
     @EqualsAndHashCode.Exclude
-    @Size(max = 250)
+    @Size(max = 64)
     public String libelleCourrier;
 
     @Size(max = 64)
