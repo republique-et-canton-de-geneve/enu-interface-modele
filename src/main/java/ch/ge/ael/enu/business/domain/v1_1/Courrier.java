@@ -40,7 +40,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(callSuper = true, doNotUseGetters = true)
-public class Courrier extends MessageENU {
+public class Courrier extends MessageENU implements MesDocuments {
 
     public String idDemarcheSiMetier;
 

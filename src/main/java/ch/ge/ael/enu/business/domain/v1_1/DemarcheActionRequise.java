@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(callSuper = true, doNotUseGetters = true)
-public class DemarcheActionRequise extends MessageENU implements Demarche {
+public class DemarcheActionRequise extends MessageENU implements Demarche, MesActions {
 
     @NotBlank
     public String idDemarcheSiMetier;

@@ -43,7 +43,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(callSuper = true, doNotUseGetters = true)
 @ValidDocumentUsager
-public class DocumentUsager extends MessageENU {
+public class DocumentUsager extends MessageENU implements MesDocuments {
 
     @NotBlank
     public String idDemarcheSiMetier;

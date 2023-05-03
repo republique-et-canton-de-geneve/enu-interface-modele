@@ -24,7 +24,7 @@ default:
     - 'for:application-project'
     - 'host:restricted-container'
     - 'net:soca4-dev'
-  image: docker-all.devops.etat-ge.ch/ch/ge/cti/build/alpine-maven-git-node:15
+  image: docker-all.devops.etat-ge.ch/ch/ge/cti/build/alpine-maven-git-node:18
 
 cache:
   untracked: false

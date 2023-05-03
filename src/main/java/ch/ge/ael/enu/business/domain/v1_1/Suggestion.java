@@ -19,7 +19,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(callSuper = true, doNotUseGetters = true)
-public class Suggestion extends MessageENU {
+public class Suggestion extends MessageENU implements MesActions {
 
     @NotBlank
     @Size(max = 25)
