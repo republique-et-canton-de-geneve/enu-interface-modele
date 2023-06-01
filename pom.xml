@@ -8,7 +8,7 @@
     </parent>
     <!-- le groupId doit commencer par "ch.ge.etat" afin que le JAR puisse etre pousse sur Maven Central -->
     <artifactId>enu-interface-modele</artifactId>
-    <version>1.1.20</version>
+    <version>1.1.21-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>enu-interface-modele</name>
@@ -29,7 +29,7 @@
         <developerConnection>scm:git:${scm.baseurl}/enu-interface-modele.git</developerConnection>
         <!--suppress UnresolvedMavenProperty -->
         <url>${scm.baseurl}/enu-interface-modele.git</url>
-        <tag>enu-interface-modele-1.1.20</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencies>
