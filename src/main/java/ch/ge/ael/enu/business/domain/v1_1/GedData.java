@@ -20,6 +20,7 @@ package ch.ge.ael.enu.business.domain.v1_1;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import lombok.extern.jackson.Jacksonized;
@@ -31,6 +32,7 @@ import javax.validation.constraints.Size;
  * Identifiants GED d'un document.
  */
 @Data
+@NoArgsConstructor
 @Jacksonized @SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(doNotUseGetters = true)
