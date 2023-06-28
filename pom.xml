@@ -4,7 +4,7 @@
     <parent>
         <groupId>ch.ge.ael.enu</groupId>
         <artifactId>maven-parent</artifactId>
-        <version>1.4</version>
+        <version>1.9</version>
     </parent>
     <!-- le groupId doit commencer par "ch.ge.etat" afin que le JAR puisse etre pousse sur Maven Central -->
     <artifactId>enu-interface-modele</artifactId>
