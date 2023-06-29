@@ -8,7 +8,7 @@
     </parent>
     <!-- le groupId doit commencer par "ch.ge.etat" afin que le JAR puisse etre pousse sur Maven Central -->
     <artifactId>enu-interface-modele</artifactId>
-    <version>1.1.22</version>
+    <version>1.1.23-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>enu-interface-modele</name>
