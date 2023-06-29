@@ -27,6 +27,7 @@ import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * Identifiants GED d'un document.
@@ -36,7 +37,7 @@ import javax.validation.constraints.Size;
 @Jacksonized @SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(doNotUseGetters = true)
-public class GedData {
+public class GedData implements Serializable {
 
     // Docubase UNIQUEMENT: DOCUBASE/1234_1234
     @NotBlank

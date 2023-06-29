@@ -28,6 +28,7 @@ import lombok.extern.jackson.Jacksonized;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * Document inclus dans un courrier, avec référence GED
@@ -37,7 +38,7 @@ import javax.validation.constraints.Size;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(doNotUseGetters = true)
 @ValidCourrierDocument
-public class CourrierDocument {
+public class CourrierDocument implements Serializable {
 
     @Size(max = 100)
     public String libelleDocument;

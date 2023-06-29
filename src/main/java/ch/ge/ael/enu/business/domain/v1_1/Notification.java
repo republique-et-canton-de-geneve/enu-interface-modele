@@ -8,12 +8,13 @@ import lombok.extern.jackson.Jacksonized;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Data
 @Jacksonized @SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(doNotUseGetters = true)
-public class Notification {
+public class Notification implements Serializable {
     @Size(max = 20)
     public String numeroSMS;
 
