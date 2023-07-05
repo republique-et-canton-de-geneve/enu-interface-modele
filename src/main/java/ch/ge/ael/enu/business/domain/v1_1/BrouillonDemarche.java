@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString(callSuper = true, doNotUseGetters = true)
-public class BrouillonDemarche extends MessageENU implements MesActions {
+public class BrouillonDemarche extends MessageENU implements MesActions, Demarche {
     @NotBlank
     public String idDemarcheSiMetier;
 
