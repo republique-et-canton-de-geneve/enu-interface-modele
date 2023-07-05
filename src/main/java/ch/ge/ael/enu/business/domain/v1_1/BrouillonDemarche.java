@@ -11,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Jacksonized @SuperBuilder
@@ -25,4 +26,6 @@ public class BrouillonDemarche extends MessageENU implements MesActions, Demarch
     public URL urlAction;
 
     public LocalDate dateEcheanceAction;
+
+    public LocalDateTime dateDepot = LocalDateTime.now();
 }
