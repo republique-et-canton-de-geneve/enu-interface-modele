@@ -2,7 +2,7 @@
 
 Build GitHub :
 
-[![Build with GitHub](https://github.com/Espace-numerique-de-l-usager/enu-interface-modele/actions/workflows/maven.yml/badge.svg)](https://github.com/Espace-numerique-de-l-usager/enu-interface-modele/actions/workflows/maven.yml)
+[![Build with GitHub](https://github.com/republique-et-canton-de-geneve/enu-interface-modele/actions/workflows/maven.yml/badge.svg)](https://github.com/republique-et-canton-de-geneve/enu-interface-modele/actions/workflows/maven.yml)
 
 Analyse SonarCloud :
 
